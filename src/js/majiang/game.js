@@ -16,7 +16,7 @@ constructor() {
 
     this._model = {
         title:      '電脳麻将\n' + new Date().toLocaleString(),
-        player:     ['私','下家','対面','上家'],
+        player:     [player_names[3] || 'user',player_names[0] || '下家',player_names[1] || '対面',player_names[2] || '上家'],
         qijia:      Math.floor(Math.random() * 4),
         zhuangfeng: 0,
         jushu:      0,
@@ -632,6 +632,10 @@ reply_zimo() {
     else if (reply.hule) {
         if (this.allow_hule()) {
             if (this._view) this._view.say('zimo', model.lunban);
+            for (let l = 0; l < 4; l++) {
+                if (player_names[l])
+                    window.api.SendSSTP([l, 'say', this._model.player[this._model.player_id[this._model.lunban]], 'tsumo']);
+            }
             this.delay(()=>this.hule());
             return;
         }
@@ -639,6 +643,10 @@ reply_zimo() {
     else if (reply.gang) {
         if (this.get_gang_mianzi().find(m=>m==reply.gang)) {
             if (this._view) this._view.say('gang', model.lunban);
+            for (let l = 0; l < 4; l++) {
+                if (player_names[l])
+                    window.api.SendSSTP([l, 'say', this._model.player[this._model.player_id[this._model.lunban]], 'kan']);
+            }
             this.delay(()=>this.gang(reply.gang));
             return;
         }
@@ -649,6 +657,10 @@ reply_zimo() {
                 && this.allow_lizhi(reply.dapai))
             {
                 if (this._view) this._view.say('lizhi', model.lunban);
+                for (let l = 0; l < 4; l++) {
+                    if (player_names[l])
+                            window.api.SendSSTP([l, 'say', this._model.player[this._model.player_id[this._model.lunban]], 'richi']);
+                }
                 this.delay(()=>this.dapai(reply.dapai));
             }
             else {
@@ -671,6 +683,10 @@ reply_dapai() {
         let reply = this._reply[model.player_id[l]];
         if (reply.hule && this.allow_hule(l)) {
             if (this._view) this._view.say('rong', l);
+            for (let j = 0; j < 4; j++) {
+                if (player_names[j])
+                    window.api.SendSSTP([j, 'say', this._model.player[this._model.player_id[l]], 'ron']);
+            }
             this._hule.push(l);
         }
         else {
@@ -722,6 +738,10 @@ reply_dapai() {
             if (m.match(/^[mpsz](\d)\1\1\1/)) {
                 if (this.get_gang_mianzi(l).find(m=>reply.fulou)) {
                     if (this._view) this._view.say('gang', l);
+                    for (let j = 0; j < 4; j++) {
+                        if (player_names[j])
+                            window.api.SendSSTP([j, 'say', this._model.player[this._model.player_id[l]], 'kan']);
+                    }
                     this.delay(()=>this.fulou(reply.fulou));
                     return;
                 }
@@ -729,6 +749,10 @@ reply_dapai() {
             else if (m.match(/^[mpsz](\d)\1\1/)) {
                 if (this.get_peng_mianzi(l).find(m=>reply.fulou)) {
                     if (this._view) this._view.say('peng', l);
+                    for (let j = 0; j < 4; j++) {
+                        if (player_names[j])
+                            window.api.SendSSTP([j, 'say', this._model.player[this._model.player_id[l]], 'pon']);
+                    }
                     this.delay(()=>this.fulou(reply.fulou));
                     return;
                 }
@@ -740,6 +764,10 @@ reply_dapai() {
     if (reply.fulou) {
         if (this.get_chi_mianzi(l).find(m=>reply.fulou)) {
             if (this._view) this._view.say('chi', l);
+            for (let j = 0; j < 4; j++) {
+                if (player_names[j])
+                    window.api.SendSSTP([j, 'say', this._model.player[this._model.player_id[l]], 'chi']);
+            }
             this.delay(()=>this.fulou(reply.fulou));
             return;
         }
@@ -783,6 +811,10 @@ reply_gang() {
         let reply = this._reply[model.player_id[l]];
         if (reply.hule && this.allow_hule(l)) {
             if (this._view) this._view.say('rong', l);
+            for (let j = 0; j < 4; j++) {
+                if (player_names[j])
+                    window.api.SendSSTP([j, 'say', this._model.player[this._model.player_id[l]], 'ron']);
+            }
             this._hule.push(l);
         }
         else {
