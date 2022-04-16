@@ -41,7 +41,6 @@ const createWindow = () => {
 
 app.on('ready', () => {
   createWindow();
-  getHwnd();
 });
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {  // macOS以外
@@ -54,20 +53,10 @@ app.on('activate', () => {
   }
 });
 
-ipcMain.on("ipc-SSTP-send", (event, data) => {
-  sendSSTP(data);
-});
-
-const returnPlayerNames = (names) => {
-  mainWindow.webContents.send("ipc-get-player-names", names);
-};
-
 var sstp_mes = '';
 var sstp_id = -1;
-const sendSSTP = (arg) => {
-  const data = arg;
-  const index = 1 * data[0];
-  const hwnd = hwnd_saved[index];
+ipcMain.on("ipc-SSTP-send", (event, data) => {
+  const hwnd = data[0];
   let mes = ''
     + 'EXECUTE SAORI/1.0\n'
     + 'Charset: UTF-8\n'
@@ -88,7 +77,7 @@ const sendSSTP = (arg) => {
   sstp_mes += mes;
   clearTimeout(sstp_id);
   sstp_id = setTimeout(execSSTP, 500);
-};
+});
 
 const execSSTP = () => {
   const dt1 = new Date().toISOString().replace(/[T.:]/g, '-').replace(/Z/, '');
@@ -118,10 +107,10 @@ const execSSTP = () => {
   });
 };
 
-var hwnd_saved = [];
-var hwnd_dict = {};
-var name_saved = [];
-const getHwnd = () => {
+ipcMain.on("ipc-get-player-info", (event) => {
+  let hwnd_saved = [];
+  let hwnd_dict = {};
+  let name_saved = [];
   const path0 = `${__dirname}\\saori\\log\\`;
   fs.rmSync(path0, { recursive: true, force: true });
   fs.mkdirSync(path0);
@@ -201,9 +190,9 @@ const getHwnd = () => {
           name = name.replace('\r', '');
           name_saved.push(name);
           hwnd_saved.push(hwnd_dict[name]);
-          returnPlayerNames(name);
         }
       }
+      mainWindow.webContents.send("ipc-receive-player-info", [name_saved, hwnd_saved]);
     });
   });
-};
+});

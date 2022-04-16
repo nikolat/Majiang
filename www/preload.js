@@ -2,9 +2,10 @@ const { contextBridge, ipcRenderer} = require("electron");
 
 contextBridge.exposeInMainWorld(
   "api", {
+    RequestPlayerInfo: () => ipcRenderer.send("ipc-get-player-info"),
     SendSSTP: (arg) => ipcRenderer.send("ipc-SSTP-send", arg),
-    GetPlayerNames: (listener) => {
-      ipcRenderer.on("ipc-get-player-names", (event, arg) => listener(arg));
+    ReceivePlayerInfo: (listener) => {
+      ipcRenderer.on("ipc-receive-player-info", (event, arg) => listener(arg));
     }
   }
 );
