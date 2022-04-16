@@ -293,6 +293,25 @@ jieju(jieju)   {
 wait() { if (this._callback) this._callback() }
 
 action_zimo(zimo, option) {
+    if (this._hwnd) {
+        if (!this._setReceiveDapai) {
+            window.api.ReceiveDapai((data) => {
+                if (data[0] != this._hwnd)
+                    return;
+//                console.log(data);
+//                let res_action = data[1];
+//                let res_select = data[2];
+                this.action_zimo_base(zimo, option);
+            });
+            this._setReceiveDapai = true;
+        }
+        window.api.RequestDapai(this._hwnd);
+    }
+    else {
+        this.action_zimo_base(zimo, option);
+    }
+}
+action_zimo_base(zimo, option) {
     let mianzi;
     if      (this.select_hule(null, option)) this._callback({hule: '-'});
     else if (this.select_pingju())           this._callback({pingju: '-'});

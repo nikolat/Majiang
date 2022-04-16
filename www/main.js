@@ -107,7 +107,61 @@ const execSSTP = () => {
   });
 };
 
-ipcMain.on("ipc-get-player-info", (event) => {
+ipcMain.on("ipc-request-dapai", (event, data) => {
+  const hwnd = data;
+  const mes1 = ''
+    + 'EXECUTE SAORI/1.0\n'
+    + 'Charset: UTF-8\n'
+    + 'SecurityLevel: Local\n'
+    + 'Argument0: DSSTPSend\n'
+    + 'Argument1: ' + hwnd + '\n'
+    + 'Argument2: result\n'
+    + 'Argument3: NOTIFY SSTP/1.1\n'
+    + 'Argument4: Charset: UTF-8\n'
+    + 'Argument5: Sender: Majiang\n'
+    + 'Argument6: Event: OnMahjong\n'
+    + 'Argument7: Option: nobreak\n'
+    + 'Argument8: Reference0: UKAJONG/0.2\n'
+    + 'Argument9: Reference1: sutehai?\n'
+    + '\n';
+  const dt1 = new Date().toISOString().replace(/[T.:]/g, '-').replace(/Z/, '');
+  const path1 = `${__dirname}\\saori\\log\\request${dt1}.txt`;
+  fs.writeFile(path1, mes1, (error) => {
+    if (error != null) {
+      console.error('ERROR', error);
+      return;
+    }
+    childProcess.exec(`${__dirname}\\saori\\shioricaller.exe ${__dirname}\\saori\\HandUtil.dll ${__dirname}\\saori\\ < ${path1}`, (error, stdout, stderr) => {
+      if (error) {
+        console.error('ERROR', error);
+        const dt2 = new Date().toISOString().replace(/[T.:]/g, '-').replace(/Z/, '');
+        const path2 = `${__dirname}\\saori\\log\\error${dt2}.txt`;
+        fs.writeFile(path2, error.message + '\n\n' + mes1, (err) => {
+          if (err != null) {
+            console.error('ERROR', err);
+            return;
+          }
+        });
+        return;
+      }
+      const res = stdout;
+      const lines = res.split('\r\n');
+      let command;
+      let dapai;
+      for (let i = 0; i < lines.length; i++) {
+        if (lines[i].indexOf('X-SSTP-PassThru-Reference2: ') >= 0) {
+          command = lines[i].split('X-SSTP-PassThru-Reference2: ')[1].replace('\r', '');
+        }
+        else if (lines[i].indexOf('X-SSTP-PassThru-Reference3: ') >= 0) {
+          dapai = lines[i].split('X-SSTP-PassThru-Reference3: ')[1].replace('\r', '');
+        }
+      }
+      mainWindow.webContents.send("ipc-receive-dapai", [hwnd, command, dapai]);
+    });
+  });
+});
+
+ipcMain.on("ipc-request-player-info", (event) => {
   let hwnd_saved = [];
   let hwnd_dict = {};
   let name_saved = [];
@@ -141,13 +195,11 @@ ipcMain.on("ipc-get-player-info", (event) => {
     let name_tmp = [];
     for (let i = 0; i < lines.length; i++) {
       if (lines[i].indexOf('.hwnd' + String.fromCharCode(1)) >= 0) {
-        let hwnd = lines[i].split(String.fromCharCode(1))[1];
-        hwnd = hwnd.replace('\r', '');
+        const hwnd = lines[i].split(String.fromCharCode(1))[1].replace('\r', '');
         hwnd_tmp.push(hwnd);
       }
       else if (lines[i].indexOf('.name' + String.fromCharCode(1)) >= 0) {
-        let name = lines[i].split(String.fromCharCode(1))[1];
-        name = name.replace('\r', '');
+        const name = lines[i].split(String.fromCharCode(1))[1].replace('\r', '');
         name_tmp.push(name);
       }
     }
@@ -186,8 +238,7 @@ ipcMain.on("ipc-get-player-info", (event) => {
       const lines = res.split('\r\n');
       for (let i = 0; i < lines.length; i++) {
         if (lines[i].indexOf('X-SSTP-PassThru-Reference3: name=') >= 0) {
-          let name = lines[i].split('X-SSTP-PassThru-Reference3: name=')[1];
-          name = name.replace('\r', '');
+          const name = lines[i].split('X-SSTP-PassThru-Reference3: name=')[1].replace('\r', '');
           name_saved.push(name);
           hwnd_saved.push(hwnd_dict[name]);
         }
