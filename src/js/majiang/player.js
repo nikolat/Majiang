@@ -293,7 +293,7 @@ jieju(jieju)   {
 wait() { if (this._callback) this._callback() }
 
 action_zimo(zimo, option) {
-    if (this._hwnd) {
+    if (false && this._hwnd) {
         if (!this._setReceiveDapai) {
             window.api.ReceiveDapai((data) => {
                 if (data[0] != this._hwnd)
