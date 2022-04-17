@@ -98,7 +98,7 @@ qipai(qipai) {
     if (this._hwnd) {
         window.api.SendSSTP([this._hwnd, 'kyokustart', ['東', '南', '西', '北'][qipai.zhuangfeng], player[model.qijia], qipai.changbang, 1000 * qipai.lizhibang]);
         window.api.SendSSTP([this._hwnd, 'dora', this.convert_ump(qipai.baopai)]);
-        window.api.SendSSTP([this._hwnd, 'haipai', player[model.menfeng], this.convert_ump(this._shoupai.toString())]);
+        window.api.SendSSTP([this._hwnd, 'haipai', this._model.player[this._id], this.convert_ump(this._shoupai.toString())]);
     }
 }
 
