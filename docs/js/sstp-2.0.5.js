@@ -1,0 +1,1 @@
+(()=>{"use strict";Majiang.Game;Majiang.AI})();

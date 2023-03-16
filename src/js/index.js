@@ -10,6 +10,8 @@
 const { hide, show, fadeIn, scale,
         setSelector, clearSelector  } = Majiang.UI.Util;
 
+import { UkajongGame, UkajongAI, RequestPlayerInfo } from './sstp';
+
 let loaded;
 
 $(function(){
@@ -41,12 +43,14 @@ $(function(){
     const rule = Majiang.rule(
                     JSON.parse(localStorage.getItem('Majiang.rule')||'{}'));
 
-    function start() {
+    async function start() {
+		const [names, hwnds] = await RequestPlayerInfo();
         let players = [ new Majiang.UI.Player($('#board'), pai, audio) ];
         for (let i = 1; i < 4; i++) {
-            players[i] = new Majiang.AI();
+            players[i] = new UkajongAI();
         }
-        game = new Majiang.Game(players, end, rule);
+        game = new UkajongGame(players, end, rule, null, names, hwnds);
+
         game.view = new Majiang.UI.Board($('#board .board'),
                                         pai, audio, game.model);
 
