@@ -15,9 +15,10 @@ module.exports = {
         drill:     './src/js/drill.js',
         dapai:     './src/js/dapai.js',
         paiga:     './src/js/paiga.js',
+        sstp:      './src/js/sstp.js',
     },
     output: {
-        path:     __dirname + '/dist/js/',
+        path:     __dirname + '/docs/js/',
         filename: `[name]-${version}.js`
     },
     optimization: {

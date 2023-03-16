@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=800">
+    <title>電脳麻将: 牌画入力</title>
+    <meta name="description" content="簡単な記法で牌画を入力">
+    <link rel="icon" type="image/png" href="img/icon.png">
+    <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
+    <link rel="stylesheet" type="text/css" href="css/majiang-2.0.5.css">
+    <script src="js/majiang-2.0.5.js" defer></script>
+    <script src="js/paiga-2.0.5.js" defer></script>
+  </head>
+  <body class="demo">
+    <div id="loaderr" style="display: none">
+      <p>
+        プログラムのロードでエラーが発生しました。
+        お使いのブラウザでは実行できない可能性があります。
+        リロードして問題が解決しない場合は、
+        Google Chromeなど最新のブラウザでアクセスしてみてください。
+      </p>
+      <script>
+        window.onload = function(){
+          var elem = document.getElementById('loaderr');
+          if (typeof Majiang === 'undefined') elem.removeAttribute('style');
+        }
+      </script>
+    </div>
+    <ul id="navi">
+      <li><a href="../">Home</a></li>
+      <li><a href="index.html">電脳麻将</a></li>
+      <li><a href="autoplay.html">自動対戦</a></li>
+      <li><a href="rule.html">ルール</a></li>
+      <li><a href="paipu.html">牌譜</a></li>
+      <li><a href="paili.html">牌理</a></li>
+      <li><a href="hule.html">点計算</a></li>
+      <li><a href="dapai.html">何切る</a></li>
+      <li><a href="paiga.html">牌画</a></li>
+      <li><a href="https://github.com/kobalab/Majiang" target="_blank">GitHub</a></li>
+      <li><a href="https://www.amazon.co.jp/dp/4798067881" target="_blank">書籍</a></li>
+    </ul>
+    <div class="version">ver. 2.0.5</div>
+    <form>
+      <textarea class="paiga" name="text" rows="10"></textarea><br>
+      <label>
+        <input name="size" type="radio" value="24x34" checked>大(24x34) 
+      </label>
+      <label>
+        <input name="size" type="radio" value="19x26">中(19x26) 
+      </label>
+      <label>
+        <input name="size" type="radio" value="16x23">小(16x23) 
+      </label>
+      <input type="submit" value="変換">
+      <input type="reset" value="クリア">
+    </form>
+    <hr>
+    <div class="paiga">
+      <div></div>
+      <textarea class="paiga" rows="20"></textarea>
+    </div>
+  </body>
+</html>

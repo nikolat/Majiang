@@ -1,0 +1,3054 @@
+@charset "UTF-8";
+.hide {
+  display: none !important;
+}
+.fadeout {
+  opacity: 0 !important;
+}
+input {
+  font-size: 100%;
+  font-family: Menlo, Consolas, Courier, monospace;
+}
+input[type="submit"],
+input[type="reset"],
+input[type="button"] {
+  font-family: Verdana, sans-serif;
+  padding: 1px 1em;
+  border: solid 1px;
+  border-radius: 4px;
+  background: #ddd;
+  color: #000;
+  -webkit-appearance: none;
+}
+select {
+  border: solid 1px;
+  border-radius: 4px;
+  font-size: 100%;
+  padding: 1px;
+  background: #ddd;
+  color: #000;
+}
+body {
+  -webkit-text-size-adjust: 100%;
+  margin-top: 0;
+}
+#loaddata {
+  display: none;
+}
+[role="button"] * {
+  pointer-events: none;
+}
+@-moz-keyframes blink {
+  100% {
+    opacity: 0.7;
+  }
+}
+@-webkit-keyframes blink {
+  100% {
+    opacity: 0.7;
+  }
+}
+@-o-keyframes blink {
+  100% {
+    opacity: 0.7;
+  }
+}
+@keyframes blink {
+  100% {
+    opacity: 0.7;
+  }
+}
+@-moz-keyframes blink-text {
+  100% {
+    opacity: 0.2;
+  }
+}
+@-webkit-keyframes blink-text {
+  100% {
+    opacity: 0.2;
+  }
+}
+@-o-keyframes blink-text {
+  100% {
+    opacity: 0.2;
+  }
+}
+@keyframes blink-text {
+  100% {
+    opacity: 0.2;
+  }
+}
+#navi {
+  font-size: 12px;
+  font-family: Verdana, sans-serif;
+  padding: 0;
+  text-align: right;
+}
+#navi li + li:before {
+  content: ' | ';
+}
+#navi li {
+  display: inline-block;
+}
+#navi li a {
+  color: inherit;
+  text-decoration: none;
+}
+body.title {
+  color: #fff;
+  background: #000;
+  margin: 0;
+}
+body.title #title {
+  display: block;
+}
+body.title #navi {
+  width: 800px;
+  margin: 0 auto;
+}
+body.title > .version {
+  display: none;
+}
+#title {
+  display: none;
+  margin: 40px auto;
+  width: 640px;
+  padding: 4px;
+  border-radius: 5px;
+  background: #fff;
+  color: #000;
+  text-align: center;
+}
+#title h1 {
+  margin: 0px;
+  height: 150px;
+}
+#title h1 img {
+  width: 600px;
+}
+#title .version {
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+#title .loading {
+  margin: 8px auto;
+  color: #666;
+  font-family: Verdana, sans-serif;
+  font-size: 16px;
+  animation: blink-text 2s infinite;
+}
+#title .start {
+  margin: 8px auto;
+  font-family: Century, serif;
+  width: 120px;
+  padding: 4px;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #fff;
+  background: #00f;
+  cursor: pointer;
+}
+#title .start:hover,
+#title .start:focus {
+  background: #ccc;
+  outline: none;
+}
+body.board {
+  color: #fff;
+  background: #000;
+  margin: 0;
+}
+body.board > * {
+  width: 800px;
+  margin: 0 auto;
+}
+body.board #board {
+  display: block;
+}
+body.board > .version {
+  display: block;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  text-align: right;
+}
+#space {
+  display: none;
+}
+#board {
+  display: none;
+}
+#board > .board {
+  position: absolute;
+  width: 800px;
+  overflow: hidden;
+  user-select: none;
+  touch-action: manipulation;
+  margin: 0 auto;
+  background: #154;
+}
+#board > .board > * {
+  position: absolute;
+  transform-origin: 0% 0%;
+}
+#board > .board .score {
+  border-radius: 4px;
+  background: #111;
+  font-family: Georgia, serif;
+}
+#board > .board .score .juchang {
+  float: left;
+}
+#board > .board .score .juchang .jushu {
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+  font-size: 32px;
+  line-height: 1.2;
+}
+#board > .board .score .shan {
+  float: right;
+  text-align: right;
+}
+#board > .board .score .defen {
+  clear: both;
+}
+#board > .board .score .defen div {
+  position: absolute;
+}
+#board > .board .score .defen div.lunban {
+  color: #0ff;
+}
+#board > .board .score .defen div.main {
+  text-align: center;
+}
+#board > .board .score .defen div.xiajia {
+  text-align: right;
+}
+#board > .board .score .defen div.duimian {
+  text-align: center;
+}
+#board > .board .score .defen div.shangjia {
+  text-align: left;
+}
+#board > .board .player-button {
+  text-align: right;
+  white-space: nowrap;
+}
+#board > .board .player-button .button {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  font-family: Verdana, sans-serif;
+  color: #fff;
+  background: #000;
+  border-radius: 4px;
+}
+#board > .board .player-button .button:focus {
+  background: #999;
+  outline: none;
+}
+#board > .board .select-mianzi {
+  line-height: 1;
+  text-align: right;
+  white-space: nowrap;
+}
+#board > .board .select-mianzi .mianzi {
+  background: #000;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.8;
+}
+#board > .board .select-mianzi .mianzi:focus {
+  outline: none;
+  opacity: 1;
+}
+#board > .board > .player {
+  background: #000;
+  font-family: Century, serif;
+  opacity: 0.5;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+#board > .board > .player:hover {
+  opacity: 1;
+}
+#board > .board .say {
+  font-family: Century, serif;
+  color: #fff;
+  text-shadow: 3px 3px 6px #333, -3px 3px 6px #333, -3px -3px 6px #333, 3px -3px 6px #333;
+  transition: opacity 0.4s ease-out;
+}
+#board > .board .say.main {
+  text-align: center;
+}
+#board > .board .say.xiajia {
+  text-align: left;
+}
+#board > .board .say.duimian {
+  text-align: center;
+}
+#board > .board .say.shangjia {
+  text-align: right;
+}
+#board > .board .hule-dialog {
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  transition: opacity 0.2s ease-out;
+}
+#board > .board .hule-dialog:focus {
+  outline: none;
+}
+#board > .board .hule-dialog > div {
+  margin: auto 0;
+}
+#board > .board .hule-dialog > div > div {
+  display: table;
+  background: rgba(0,0,0,0.8);
+  margin: auto;
+}
+#board > .board .hule-dialog > div > div .hule .shan {
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+}
+#board > .board .hule-dialog > div > div .hule .shan img {
+  vertical-align: bottom;
+}
+#board > .board .hule-dialog > div > div .hule .shan.baopai {
+  float: left;
+}
+#board > .board .hule-dialog > div > div .hule .shan.fubaopai {
+  float: right;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai {
+  clear: both;
+}
+#board > .board .hule-dialog > div > div .hule .hupai {
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+  line-height: 1;
+}
+#board > .board .hule-dialog > div > div .hule .hupai .fanshu {
+  text-align: right;
+}
+#board > .board .hule-dialog > div > div .hule .hupai .defen {
+  text-align: right;
+}
+#board > .board .hule-dialog > div > div .hule .jicun {
+  text-align: center;
+  font-family: Georgia, serif;
+}
+#board > .board .hule-dialog > div > div .pingju {
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+  text-align: center;
+}
+#board > .board .hule-dialog > div > div .fenpei {
+  font-family: Georgia, serif;
+}
+#board > .board .hule-dialog > div > div .fenpei > * {
+  position: absolute;
+  transform-origin: 0% 0%;
+  display: inline-block;
+}
+#board > .board .hule-dialog > div > div .fenpei > * .player {
+  display: none;
+}
+#board > .board .hule-dialog > div > div .fenpei > * .defen {
+  display: inline-block;
+  float: right;
+  text-align: right;
+}
+#board > .board .hule-dialog > div > div .fenpei > * .diff {
+  display: inline-block;
+  float: right;
+  text-align: right;
+}
+#board > .board .hule-dialog > div > div .fenpei > * .plus {
+  color: #0ff;
+}
+#board > .board .hule-dialog > div > div .fenpei > * .minus {
+  color: #f00;
+}
+#board > .board > .summary {
+  display: flex;
+  overflow: auto;
+  align-items: center;
+  transition: opacity 0.2s ease-out;
+}
+#board > .board > .summary:focus {
+  outline: none;
+}
+#board > .board > .summary > div {
+  margin: auto 0;
+}
+#board > .board > .summary > div > div {
+  background: rgba(0,0,0,0.8);
+  margin: auto;
+}
+#board > .board > .summary > div > div table {
+  margin: auto;
+  font-family: Century, serif;
+  border-collapse: collapse;
+  line-height: 1.5;
+}
+#board > .board > .summary > div > div table .r_player {
+  border-bottom: solid 2px;
+}
+#board > .board > .summary > div > div table .r_diff .back {
+  text-align: right;
+}
+#board > .board > .summary > div > div table .r_diff .zhuangjia {
+  background: rgba(128,128,128,0.4);
+}
+#board > .board > .summary > div > div table .r_diff .diff {
+  font-family: Georgia, serif;
+}
+#board > .board > .summary > div > div table .r_diff .lizhi {
+  font-family: Georgia, serif;
+  display: inline-block;
+  width: 1.2em;
+  text-align: center;
+}
+#board > .board > .summary > div > div table .r_defen {
+  border-top: solid 2px;
+}
+#board > .board > .summary > div > div table .r_defen .defen {
+  font-family: Georgia, serif;
+  text-align: right;
+  padding-right: 1.2em;
+}
+#board > .board > .summary > div > div table .r_point {
+  border-top: solid 1px;
+}
+#board > .board > .summary > div > div table .r_point .point {
+  font-family: Georgia, serif;
+  text-align: center;
+}
+#board > .board > .summary > div > div table .baojia,
+#board > .board > .summary > div > div table .minus {
+  color: #f00;
+}
+#board > .board > .summary > div > div table .hule,
+#board > .board > .summary > div > div table .plus {
+  color: #0ff;
+}
+#board > .board > .summary > div > div table a.download {
+  opacity: 0.6;
+  font-family: Verdana, sans-serif;
+  font-size: 18px;
+  text-decoration: none;
+  color: #fff;
+}
+#board > .board > .summary > div > div table a.download::link {
+  color: #fff;
+}
+#board > .board > .summary > div > div table a.download img {
+  height: 1em;
+  vertical-align: text-bottom;
+}
+#board > .board > .summary.paipu tbody tr:hover {
+  background: rgba(255,255,255,0.4);
+  cursor: pointer;
+}
+#board > .board .kaiju {
+  margin-top: 120px;
+  position: relative;
+  width: 580px;
+  margin: auto;
+  background: #111;
+  border: solid 1px #111;
+  border-radius: 6px;
+}
+#board > .board .kaiju .title {
+  margin: 40px 20px;
+  text-align: center;
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+  font-size: 32px;
+  line-height: 1;
+}
+#board > .board .kaiju .player {
+  margin: 40px 20px;
+  height: 132px;
+  text-align: center;
+  font-family: Century, serif;
+  font-size: 24px;
+}
+#board > .board .kaiju .player > div {
+  position: absolute;
+  width: 240px;
+  height: 38px;
+  padding: 0px 10px;
+  border-radius: 4px;
+  background: #333;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+}
+#board > .board .kaiju .player > div.main {
+  transform: translate(140px, 96px);
+}
+#board > .board .kaiju .player > div.xiajia {
+  transform: translate(280px, 48px);
+}
+#board > .board .kaiju .player > div.duimian {
+  transform: translate(140px, 0px);
+}
+#board > .board .kaiju .player > div.shangjia {
+  transform: translate(0px, 48px);
+}
+#board > .board .kaiju .player > div:hover {
+  background: #999;
+}
+#board .controller {
+  position: absolute;
+}
+#board .controller img {
+  opacity: 0.2;
+  cursor: pointer;
+}
+#board .controller .speed span {
+  display: inline-block;
+  background: #fff;
+  opacity: 0.1;
+}
+#board .controller:hover {
+  border-color: #333;
+  background: #000;
+}
+#board .controller:hover img {
+  opacity: 0.5;
+}
+#board .controller:hover img:hover {
+  opacity: 1;
+}
+#board .controller:hover span {
+  opacity: 0.2;
+}
+#board .download {
+  position: absolute;
+}
+#board .download a {
+  opacity: 0.7;
+  display: inline-block;
+  color: #fff;
+  background: #000;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: Verdana, sans-serif;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+#board .download a img {
+  height: 1.2em;
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+#board .download a:hover {
+  opacity: 1;
+}
+@media screen and (max-height: 680px) {
+  body.board {
+    height: 100vh;
+  }
+  body.board #space {
+    display: block;
+    background: #666;
+    height: 100px;
+  }
+  body.board #navi,
+  body.board > .version {
+    display: none;
+  }
+}
+@media screen and (max-width: 800px) {
+  body.board > .version {
+    display: none;
+  }
+}
+#board {
+  height: 680px;
+}
+#board > .board {
+  height: 680px;
+}
+#board > .board .score {
+  width: 280px;
+  height: 160px;
+  transform: translate(260px, 260px);
+  font-size: 14px;
+}
+#board > .board .score .juchang {
+  height: 72px;
+  padding: 6px;
+}
+#board > .board .score .juchang .jushu {
+  font-size: 32px;
+}
+#board > .board .score .juchang .jicun {
+  padding: 0 8px;
+}
+#board > .board .score .juchang .jicun img.chouma {
+  width: 60px;
+  height: 8px;
+}
+#board > .board .score .shan {
+  padding: 6px;
+}
+#board > .board .score .shan .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .score .shan .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .score .shan .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .score .shan .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .score .shan .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .score .shan .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .score .defen div {
+  width: 120px;
+  height: 24px;
+  font-size: 16px;
+}
+#board > .board .score .defen div.main {
+  transform: translate(80px, 48px);
+}
+#board > .board .score .defen div.xiajia {
+  transform: translate(150px, 24px);
+}
+#board > .board .score .defen div.duimian {
+  transform: translate(80px, 0px);
+}
+#board > .board .score .defen div.shangjia {
+  transform: translate(10px, 24px);
+}
+#board > .board .player-button {
+  transform: translate(120px, 580px);
+}
+#board > .board .player-button .button {
+  width: 4em;
+  height: 24px;
+  margin-left: 2px;
+  font-size: 16px;
+}
+#board > .board .select-mianzi {
+  transform: translate(120px, 572px);
+  height: 50px;
+}
+#board > .board .select-mianzi .mianzi {
+  padding: 4px;
+  margin-left: 4px;
+  display: inline-block;
+}
+#board > .board .select-mianzi .mianzi .pai {
+  display: inline-block;
+  height: 35px;
+  width: 25px;
+}
+#board > .board .select-mianzi .mianzi .pai:focus {
+  transform: translate(0, -5px);
+  outline: none;
+}
+#board > .board .select-mianzi .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .select-mianzi .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .select-mianzi .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .select-mianzi .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .select-mianzi .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 35px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-35px, 0px);
+}
+#board > .board > .player {
+  font-size: 20px;
+  width: 160px;
+  height: 30px;
+  border-radius: 6px;
+  padding: 2px 0.5em;
+}
+#board > .board > .player.main {
+  transform: translate(120px, 580px);
+}
+#board > .board > .player.xiajia {
+  transform: translate(540px, 440px);
+}
+#board > .board > .player.duimian {
+  transform: translate(500px, 60px);
+}
+#board > .board > .player.shangjia {
+  transform: translate(80px, 206px);
+}
+#board > .board .he {
+  width: 300px;
+}
+#board > .board .he div.lizhi {
+  line-height: 0;
+  width: 180px;
+  height: 12px;
+  text-align: center;
+}
+#board > .board .he div.lizhi .chouma {
+  width: 108px;
+}
+#board > .board .he .dapai {
+  line-height: 0;
+  height: 126px;
+}
+#board > .board .he .dapai .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .he .dapai .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .he .dapai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .he .dapai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .he .dapai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .he .dapai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .he .dapai .pai.dapai {
+  transform: translate(4.5px, 2.25px);
+}
+#board > .board .he .dapai .lizhi {
+  width: 42px;
+  display: inline-block;
+  text-align: left;
+  transform: rotate(270deg);
+}
+#board > .board .he .dapai .lizhi .pai.dapai {
+  transform: translate(-2.25px, 4.5px);
+}
+#board > .board .he .dapai .break {
+  display: block;
+  width: 3px;
+}
+#board > .board .he.main {
+  transform: translate(310px, 420px);
+}
+#board > .board .he.xiajia {
+  transform: translate(540px, 430px) rotate(270deg);
+}
+#board > .board .he.duimian {
+  transform: translate(490px, 260px) rotate(180deg);
+}
+#board > .board .he.shangjia {
+  transform: translate(260px, 250px) rotate(90deg);
+}
+#board > .board .shoupai.main {
+  display: table;
+  width: 680px;
+  height: 60px;
+  transform: translate(120px, 620px);
+}
+#board > .board .shoupai.main .bingpai {
+  line-height: 1;
+  margin-top: 4px;
+  float: left;
+}
+#board > .board .shoupai.main .bingpai .pai {
+  display: inline-block;
+  height: 56px;
+  width: 40px;
+}
+#board > .board .shoupai.main .bingpai .pai:focus {
+  transform: translate(0, -8px);
+  outline: none;
+}
+#board > .board .shoupai.main .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.main .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.main .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.main .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.main .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+#board > .board .shoupai.main .bingpai .zimo {
+  margin-left: 4px;
+}
+#board > .board .shoupai.main .fulou {
+  line-height: 1;
+  margin-top: 18px;
+  float: right;
+}
+#board > .board .shoupai.main .fulou .mianzi {
+  margin-left: 4px;
+  float: right;
+  display: inline-block;
+}
+#board > .board .shoupai.main .fulou .mianzi .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.main .fulou .mianzi .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.main .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.main .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.main .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.main .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.main .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 42px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-42px, 0px);
+}
+#board > .board .shoupai.xiajia {
+  display: table;
+  width: 560px;
+  height: 60px;
+  transform: translate(740px, 560px) rotate(270deg);
+}
+#board > .board .shoupai.xiajia .bingpai {
+  line-height: 1;
+  margin-top: 18px;
+  float: left;
+}
+#board > .board .shoupai.xiajia .bingpai .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.xiajia .bingpai .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.xiajia .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.xiajia .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.xiajia .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.xiajia .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.xiajia .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+#board > .board .shoupai.xiajia .bingpai .zimo {
+  margin-left: 3px;
+}
+#board > .board .shoupai.xiajia .fulou {
+  line-height: 1;
+  margin-top: 18px;
+  float: right;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi {
+  margin-left: 3px;
+  float: right;
+  display: inline-block;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.xiajia .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 42px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-42px, 0px);
+}
+#board > .board .shoupai.duimian {
+  display: table;
+  width: 680px;
+  height: 60px;
+  transform: translate(680px, 60px) rotate(180deg);
+}
+#board > .board .shoupai.duimian .bingpai {
+  line-height: 1;
+  margin-top: 18px;
+  float: left;
+}
+#board > .board .shoupai.duimian .bingpai .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.duimian .bingpai .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.duimian .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.duimian .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.duimian .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.duimian .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.duimian .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+#board > .board .shoupai.duimian .bingpai .zimo {
+  margin-left: 3px;
+}
+#board > .board .shoupai.duimian .fulou {
+  line-height: 1;
+  margin-top: 18px;
+  float: right;
+}
+#board > .board .shoupai.duimian .fulou .mianzi {
+  margin-left: 3px;
+  float: right;
+  display: inline-block;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.duimian .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 42px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-42px, 0px);
+}
+#board > .board .shoupai.shangjia {
+  display: table;
+  width: 560px;
+  height: 60px;
+  transform: translate(60px, 120px) rotate(90deg);
+}
+#board > .board .shoupai.shangjia .bingpai {
+  line-height: 1;
+  margin-top: 18px;
+  float: left;
+}
+#board > .board .shoupai.shangjia .bingpai .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.shangjia .bingpai .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.shangjia .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.shangjia .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.shangjia .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.shangjia .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.shangjia .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+#board > .board .shoupai.shangjia .bingpai .zimo {
+  margin-left: 3px;
+}
+#board > .board .shoupai.shangjia .fulou {
+  line-height: 1;
+  margin-top: 18px;
+  float: right;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi {
+  margin-left: 3px;
+  float: right;
+  display: inline-block;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .shoupai.shangjia .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 42px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-42px, 0px);
+}
+#board > .board .say {
+  width: 200px;
+  height: 100px;
+  font-size: 64px;
+}
+#board > .board .say.main {
+  transform: translate(300px, 520px);
+}
+#board > .board .say.xiajia {
+  transform: translate(600px, 290px);
+}
+#board > .board .say.duimian {
+  transform: translate(300px, 50px);
+}
+#board > .board .say.shangjia {
+  transform: translate(0px, 290px);
+}
+#board > .board .hule-dialog {
+  width: 800px;
+  height: 680px;
+}
+#board > .board .hule-dialog > div {
+  width: 800px;
+  min-height: 460px;
+  padding: 10px 0px;
+}
+#board > .board .hule-dialog > div > div {
+  min-width: 460px;
+  padding: 20px;
+}
+#board > .board .hule-dialog > div > div .hule .shan .pai {
+  display: inline-block;
+  height: 35px;
+  width: 25px;
+}
+#board > .board .hule-dialog > div > div .hule .shan .pai:focus {
+  transform: translate(0, -5px);
+  outline: none;
+}
+#board > .board .hule-dialog > div > div .hule .shan .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .hule-dialog > div > div .hule .shan .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .hule-dialog > div > div .hule .shan .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .hule-dialog > div > div .hule .shan .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .hule-dialog > div > div .hule .shan.baopai {
+  margin-left: 40px;
+}
+#board > .board .hule-dialog > div > div .hule .shan.fubaopai {
+  margin-right: 40px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai {
+  display: table;
+  width: auto;
+  height: 70px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai {
+  line-height: 1;
+  margin-top: 21px;
+  float: left;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai {
+  display: inline-block;
+  height: 49px;
+  width: 35px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai:focus {
+  transform: translate(0, -7px);
+  outline: none;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .bingpai .zimo {
+  margin-left: 3.5px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou {
+  line-height: 1;
+  margin-top: 21px;
+  float: right;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi {
+  margin-left: 3.5px;
+  float: right;
+  display: inline-block;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai {
+  display: inline-block;
+  height: 49px;
+  width: 35px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai:focus {
+  transform: translate(0, -7px);
+  outline: none;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 49px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-49px, 0px);
+}
+#board > .board .hule-dialog > div > div .hule .hupai {
+  margin: 10px auto;
+  min-width: 280px;
+  font-size: 24px;
+}
+#board > .board .hule-dialog > div > div .hule .jicun {
+  font-size: 16px;
+}
+#board > .board .hule-dialog > div > div .hule .jicun .chouma {
+  padding-left: 8px;
+  width: 60px;
+  height: 8px;
+}
+#board > .board .hule-dialog > div > div .pingju {
+  font-size: 48px;
+  margin-top: 50px;
+  margin-bottom: 100px;
+}
+#board > .board .hule-dialog > div > div .fenpei {
+  width: 380px;
+  height: 80px;
+  margin: 15px auto 0px auto;
+  font-size: 16px;
+  line-height: 16px;
+}
+#board > .board .hule-dialog > div > div .fenpei > * {
+  width: 88px;
+}
+#board > .board .hule-dialog > div > div .fenpei > *.main {
+  transform: translate(146px, 48px);
+}
+#board > .board .hule-dialog > div > div .fenpei > *.xiajia {
+  transform: translate(292px, 24px);
+}
+#board > .board .hule-dialog > div > div .fenpei > *.duimian {
+  transform: translate(146px, 0px);
+}
+#board > .board .hule-dialog > div > div .fenpei > *.shangjia {
+  transform: translate(0px, 24px);
+}
+#board > .board .hule-dialog > div > div .fenpei > * .defen {
+  width: 60px;
+}
+#board > .board .hule-dialog > div > div .fenpei > * .diff {
+  width: 88px;
+}
+#board > .board > .summary {
+  width: 800px;
+  height: 680px;
+}
+#board > .board > .summary > div {
+  width: 800px;
+  min-height: 560px;
+  padding: 10px 0px;
+}
+#board > .board > .summary > div > div {
+  width: 680px;
+  padding: 18px 0px;
+}
+#board > .board > .summary > div > div table {
+  width: 640px;
+  font-size: 18px;
+}
+#board > .board > .summary > div > div table .r_player .player {
+  width: 114px;
+}
+#board > .board > .summary > div > div table .r_point .point {
+  font-size: 24px;
+}
+#board > .board .kaiju {
+  margin-top: 120px;
+}
+#board .controller {
+  transform: translate(80px, 100px);
+  padding: 6px;
+  padding-bottom: 0;
+  border: solid 4px transparent;
+  border-radius: 6px;
+}
+#board .controller img {
+  width: 20px;
+  height: 20px;
+  margin: 2px 4px;
+}
+#board .controller .speed img {
+  width: 16px;
+  height: 16px;
+}
+#board .controller .speed span {
+  width: 16px;
+  height: 8px;
+  margin: 6px 1px;
+  border-radius: 4px;
+}
+#board .download {
+  transform: translate(10px, 10px);
+}
+body.analyzer #board > .analyzer {
+  display: none;
+  position: absolute;
+  transform: translate(50px, 160px);
+  width: 700px;
+  height: 400px;
+  background: rgba(0,0,0,0.4);
+  text-shadow: 2px 2px 4px #000;
+}
+body.analyzer #board > .analyzer.active {
+  display: block;
+}
+body.analyzer #board > .analyzer .selected {
+  background: rgba(144,144,144,0.6);
+}
+body.analyzer #board > .analyzer img {
+  opacity: 0.8;
+}
+@media screen and (max-width: 800px) {
+  #board {
+    height: 720px;
+  }
+  #board .controller {
+    transform: translate(0px, 680px);
+    width: 800px;
+    padding: 6px 0;
+    border: none;
+    text-align: center;
+  }
+  #board .controller img {
+    opacity: 0.5;
+    margin: 2px 12px;
+  }
+  #board .controller div {
+    display: inline-block;
+  }
+  #board .controller .speed span {
+    opacity: 0.2;
+  }
+}
+@media screen and (max-height: 450px) {
+  #board {
+    height: 450px;
+  }
+  #board > .board {
+    height: 450px;
+  }
+  #board > .board .score {
+    width: 280px;
+    height: 100px;
+    transform: translate(240px, 165px);
+    font-size: 14px;
+  }
+  #board > .board .score .juchang {
+    height: 48px;
+    padding: 4px;
+  }
+  #board > .board .score .juchang .jushu {
+    float: left;
+    font-size: 30px;
+  }
+  #board > .board .score .juchang .jicun {
+    float: left;
+    padding-left: 12px;
+  }
+  #board > .board .score .juchang .jicun img.chouma {
+    width: 30px;
+    height: 6px;
+  }
+  #board > .board .score .shan {
+    padding: 4px;
+  }
+  #board > .board .score .shan .pai {
+    display: inline-block;
+    height: 28px;
+    width: 20px;
+  }
+  #board > .board .score .shan .pai:focus {
+    transform: translate(0, -4px);
+    outline: none;
+  }
+  #board > .board .score .shan .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .score .shan .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .score .shan .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .score .shan .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .score .defen div {
+    width: 90px;
+    height: 20px;
+    font-size: 16px;
+  }
+  #board > .board .score .defen div.main {
+    transform: translate(95px, 15px);
+  }
+  #board > .board .score .defen div.xiajia {
+    transform: translate(185px, 0px);
+  }
+  #board > .board .score .defen div.duimian {
+    transform: translate(95px, -15px);
+  }
+  #board > .board .score .defen div.shangjia {
+    transform: translate(5px, 0px);
+  }
+  #board > .board .player-button {
+    z-index: 1;
+    transform: translate(78px, 364px);
+  }
+  #board > .board .player-button .button {
+    width: 4em;
+    height: 24px;
+    margin-left: 2px;
+    font-size: 16px;
+  }
+  #board > .board .select-mianzi {
+    z-index: 1;
+    transform: translate(78px, 356px);
+    height: 40px;
+  }
+  #board > .board .select-mianzi .mianzi {
+    padding: 4px;
+    margin-left: 4px;
+    display: inline-block;
+  }
+  #board > .board .select-mianzi .mianzi .pai {
+    display: inline-block;
+    height: 28px;
+    width: 20px;
+  }
+  #board > .board .select-mianzi .mianzi .pai:focus {
+    transform: translate(0, -4px);
+    outline: none;
+  }
+  #board > .board .select-mianzi .mianzi .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .select-mianzi .mianzi .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .select-mianzi .mianzi .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .select-mianzi .mianzi .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .select-mianzi .mianzi .rotate {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: left;
+    width: 28px;
+    transform-origin: 0% 0%;
+    transform: rotate(270deg) translate(-28px, 0px);
+  }
+  #board > .board > .player {
+    font-size: 16px;
+    width: 120px;
+    height: 24px;
+    border-radius: 4px;
+    padding: 2px 0.5em;
+  }
+  #board > .board > .player.main {
+    transform: translate(164px, 352px);
+  }
+  #board > .board > .player.xiajia {
+    transform: translate(499px, 295px);
+  }
+  #board > .board > .player.duimian {
+    transform: translate(460px, 50px);
+  }
+  #board > .board > .player.shangjia {
+    transform: translate(125px, 107px);
+  }
+  #board > .board .he {
+    width: 250px;
+  }
+  #board > .board .he div.lizhi {
+    line-height: 0;
+    width: 150px;
+    height: 10px;
+    text-align: center;
+  }
+  #board > .board .he div.lizhi .chouma {
+    width: 90px;
+  }
+  #board > .board .he .dapai {
+    line-height: 0;
+    height: 105px;
+  }
+  #board > .board .he .dapai .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .he .dapai .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .he .dapai .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .he .dapai .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .he .dapai .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .he .dapai .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .he .dapai .pai.dapai {
+    transform: translate(3.75px, 1.875px);
+  }
+  #board > .board .he .dapai .lizhi {
+    width: 35px;
+    display: inline-block;
+    text-align: left;
+    transform: rotate(270deg);
+  }
+  #board > .board .he .dapai .lizhi .pai.dapai {
+    transform: translate(-1.875px, 3.75px);
+  }
+  #board > .board .he .dapai .break {
+    display: block;
+    width: 2.5px;
+  }
+  #board > .board .he.main {
+    transform: translate(305px, 265px);
+  }
+  #board > .board .he.xiajia {
+    transform: translate(520px, 290px) rotate(270deg);
+  }
+  #board > .board .he.duimian {
+    transform: translate(455px, 165px) rotate(180deg);
+  }
+  #board > .board .he.shangjia {
+    transform: translate(240px, 140px) rotate(90deg);
+  }
+  #board > .board .shoupai.main {
+    display: table;
+    width: 604px;
+    height: 60px;
+    transform: translate(78px, 388px);
+    z-index: 1;
+  }
+  #board > .board .shoupai.main .bingpai {
+    line-height: 1;
+    margin-top: 4px;
+    float: left;
+  }
+  #board > .board .shoupai.main .bingpai .pai {
+    display: inline-block;
+    height: 56px;
+    width: 40px;
+  }
+  #board > .board .shoupai.main .bingpai .pai:focus {
+    transform: translate(0, -8px);
+    outline: none;
+  }
+  #board > .board .shoupai.main .bingpai .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.main .bingpai .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.main .bingpai .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.main .bingpai .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.main .bingpai .pai[role="button"] {
+    cursor: pointer;
+  }
+  #board > .board .shoupai.main .bingpai .zimo {
+    margin-left: 4px;
+  }
+  #board > .board .shoupai.main .fulou {
+    line-height: 1;
+    margin-top: 18px;
+    float: right;
+  }
+  #board > .board .shoupai.main .fulou .mianzi {
+    margin-left: 4px;
+    float: right;
+    display: inline-block;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .pai {
+    display: inline-block;
+    height: 42px;
+    width: 30px;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .pai:focus {
+    transform: translate(0, -6px);
+    outline: none;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.main .fulou .mianzi .rotate {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: left;
+    width: 42px;
+    transform-origin: 0% 0%;
+    transform: rotate(270deg) translate(-42px, 0px);
+  }
+  #board > .board .shoupai.xiajia {
+    display: table;
+    width: 448px;
+    height: 87px;
+    transform: translate(652px, 450px) rotate(270deg);
+  }
+  #board > .board .shoupai.xiajia .bingpai {
+    line-height: 1;
+    margin-top: 0;
+    float: none;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.xiajia .bingpai .pai[role="button"] {
+    cursor: pointer;
+  }
+  #board > .board .shoupai.xiajia .bingpai .zimo {
+    margin-left: 2.5px;
+  }
+  #board > .board .shoupai.xiajia .fulou {
+    line-height: 1;
+    margin-top: 17px;
+    float: none;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi {
+    margin-left: 2.5px;
+    float: right;
+    display: inline-block;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.xiajia .fulou .mianzi .rotate {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: left;
+    width: 35px;
+    transform-origin: 0% 0%;
+    transform: rotate(270deg) translate(-35px, 0px);
+  }
+  #board > .board .shoupai.xiajia .bingpai {
+    margin-left: 72px;
+  }
+  #board > .board .shoupai.duimian {
+    display: table;
+    width: 490px;
+    height: 50px;
+    transform: translate(625px, 52px) rotate(180deg);
+  }
+  #board > .board .shoupai.duimian .bingpai {
+    line-height: 1;
+    margin-top: 15px;
+    float: left;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.duimian .bingpai .pai[role="button"] {
+    cursor: pointer;
+  }
+  #board > .board .shoupai.duimian .bingpai .zimo {
+    margin-left: 2.5px;
+  }
+  #board > .board .shoupai.duimian .fulou {
+    line-height: 1;
+    margin-top: 15px;
+    float: right;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi {
+    margin-left: 2.5px;
+    float: right;
+    display: inline-block;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.duimian .fulou .mianzi .rotate {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: left;
+    width: 35px;
+    transform-origin: 0% 0%;
+    transform: rotate(270deg) translate(-35px, 0px);
+  }
+  #board > .board .shoupai.shangjia {
+    display: table;
+    width: 448px;
+    height: 87px;
+    transform: translate(108px, 0px) rotate(90deg);
+  }
+  #board > .board .shoupai.shangjia .bingpai {
+    line-height: 1;
+    margin-top: 0;
+    float: none;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.shangjia .bingpai .pai[role="button"] {
+    cursor: pointer;
+  }
+  #board > .board .shoupai.shangjia .bingpai .zimo {
+    margin-left: 2.5px;
+  }
+  #board > .board .shoupai.shangjia .fulou {
+    line-height: 1;
+    margin-top: 17px;
+    float: none;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi {
+    margin-left: 2.5px;
+    float: right;
+    display: inline-block;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .pai {
+    display: inline-block;
+    height: 35px;
+    width: 25px;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .pai:focus {
+    transform: translate(0, -5px);
+    outline: none;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .shoupai.shangjia .fulou .mianzi .rotate {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: left;
+    width: 35px;
+    transform-origin: 0% 0%;
+    transform: rotate(270deg) translate(-35px, 0px);
+  }
+  #board > .board .shoupai.shangjia .bingpai {
+    margin-left: 20px;
+  }
+  #board > .board .say {
+    z-index: 1;
+    width: 200px;
+    height: 100px;
+    font-size: 64px;
+  }
+  #board > .board .say.main {
+    transform: translate(280px, 295px);
+  }
+  #board > .board .say.xiajia {
+    transform: translate(520px, 165px);
+  }
+  #board > .board .say.duimian {
+    transform: translate(280px, 35px);
+  }
+  #board > .board .say.shangjia {
+    transform: translate(40px, 165px);
+  }
+  #board > .board .hule-dialog {
+    z-index: 1;
+    width: 800px;
+    height: 450px;
+  }
+  #board > .board .hule-dialog > div {
+    width: 760px;
+    min-height: 340px;
+  }
+  #board > .board .hule-dialog > div > div {
+    min-width: 420px;
+    padding: 12px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan .pai {
+    display: inline-block;
+    height: 28px;
+    width: 20px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan .pai:focus {
+    transform: translate(0, -4px);
+    outline: none;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan.baopai {
+    margin-left: 40px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shan.fubaopai {
+    margin-right: 40px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai {
+    display: table;
+    width: auto;
+    height: 60px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai {
+    line-height: 1;
+    margin-top: 18px;
+    float: left;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai {
+    display: inline-block;
+    height: 42px;
+    width: 30px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai:focus {
+    transform: translate(0, -6px);
+    outline: none;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .pai[role="button"] {
+    cursor: pointer;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .bingpai .zimo {
+    margin-left: 3px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou {
+    line-height: 1;
+    margin-top: 18px;
+    float: right;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi {
+    margin-left: 3px;
+    float: right;
+    display: inline-block;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai {
+    display: inline-block;
+    height: 42px;
+    width: 30px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai:focus {
+    transform: translate(0, -6px);
+    outline: none;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.blink {
+    animation: blink 0.5s infinite;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.deleted {
+    transition: width 0.3s ease-out 0.1s;
+    opacity: 0;
+    width: 0px;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.mopai {
+    opacity: 0.8;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .pai.dapai.mopai {
+    opacity: 0.6;
+  }
+  #board > .board .hule-dialog > div > div .hule .shoupai .fulou .mianzi .rotate {
+    display: inline-block;
+    white-space: nowrap;
+    text-align: left;
+    width: 42px;
+    transform-origin: 0% 0%;
+    transform: rotate(270deg) translate(-42px, 0px);
+  }
+  #board > .board .hule-dialog > div > div .hule .hupai {
+    margin: 10px auto;
+    min-width: 240px;
+    font-size: 20px;
+  }
+  #board > .board .hule-dialog > div > div .hule .jicun {
+    font-size: 14px;
+  }
+  #board > .board .hule-dialog > div > div .hule .jicun .chouma {
+    padding-left: 8px;
+    width: 60px;
+    height: 8px;
+  }
+  #board > .board .hule-dialog > div > div .pingju {
+    font-size: 40px;
+    margin-top: 40px;
+    margin-bottom: 60px;
+  }
+  #board > .board .hule-dialog > div > div .fenpei {
+    width: 380px;
+    height: 80px;
+    margin: 15px auto 0px auto;
+    font-size: 16px;
+    line-height: 16px;
+  }
+  #board > .board .hule-dialog > div > div .fenpei > * {
+    width: 88px;
+  }
+  #board > .board .hule-dialog > div > div .fenpei > *.main {
+    transform: translate(146px, 48px);
+  }
+  #board > .board .hule-dialog > div > div .fenpei > *.xiajia {
+    transform: translate(292px, 24px);
+  }
+  #board > .board .hule-dialog > div > div .fenpei > *.duimian {
+    transform: translate(146px, 0px);
+  }
+  #board > .board .hule-dialog > div > div .fenpei > *.shangjia {
+    transform: translate(0px, 24px);
+  }
+  #board > .board .hule-dialog > div > div .fenpei > * .defen {
+    width: 60px;
+  }
+  #board > .board .hule-dialog > div > div .fenpei > * .diff {
+    width: 88px;
+  }
+  #board > .board > .summary {
+    z-index: 1;
+    width: 800px;
+    height: 450px;
+  }
+  #board > .board > .summary > div {
+    width: 800px;
+    min-height: 360px;
+    padding: 10px 0px;
+  }
+  #board > .board > .summary > div > div {
+    width: 680px;
+    padding: 18px 0px;
+  }
+  #board > .board > .summary > div > div table {
+    width: 640px;
+    font-size: 16px;
+  }
+  #board > .board > .summary > div > div table .r_player .player {
+    width: 114px;
+  }
+  #board > .board > .summary > div > div table .r_point .point {
+    font-size: 20px;
+  }
+  #board > .board .kaiju {
+    margin-top: 60px;
+  }
+  #board .controller {
+    z-index: 1;
+    width: 40px;
+    margin-top: 16px;
+    transform: translate(760px, 0px);
+    padding: 0;
+    border: none;
+    background: inherit;
+  }
+  #board .controller:hover {
+    background: inherit;
+  }
+  #board .controller img {
+    opacity: 0.2;
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 8px auto;
+  }
+  #board .controller div {
+    display: block;
+  }
+  #board .controller .speed {
+    margin: 10px 0;
+  }
+  #board .controller .speed img {
+    display: block;
+    width: 24px;
+    height: 24px;
+    margin: 4px auto;
+  }
+  #board .controller .speed span {
+    opacity: 0.1;
+    display: block;
+    width: 24px;
+    height: 8px;
+    margin: 2px auto;
+    border-radius: 4px;
+  }
+  #board .download {
+    z-index: 1;
+    transform: translate(10px, 5px);
+  }
+  body.analyzer #board > .analyzer {
+    display: none;
+    z-index: 1;
+    transform: translate(10px, 10px);
+    width: 740px;
+    height: 360px;
+    background: rgba(0,0,0,0.4);
+  }
+  body.analyzer #board > .analyzer.active {
+    display: block;
+  }
+  body.analyzer #board > .analyzer .selected {
+    background: rgba(192,192,192,0.6);
+  }
+  body.analyzer #board > .analyzer img {
+    opacity: 0.8;
+  }
+}
+body.file {
+  color: #000;
+  background: #fff;
+  margin: 0 10px 15px;
+}
+body.file #navi {
+  margin: 0;
+}
+body.file #file {
+  display: block;
+}
+body.file > .version {
+  display: none;
+}
+#file {
+  display: none;
+  font-size: 14px;
+  font-family: Verdana, sans-serif;
+}
+#file h1 {
+  font-size: 24px;
+  margin-top: 0;
+  border-bottom: solid 2px #000;
+}
+#file h1 img {
+  height: 36px;
+  vertical-align: bottom;
+}
+#file > .version {
+  margin-top: -2.4em;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  text-align: right;
+}
+#file .file {
+  margin: 10px 0;
+}
+#file .file .row {
+  transition: opacity 0.4s ease-out;
+  border: solid 1px #ccc;
+  margin: 2px 0px;
+  border-radius: 4px;
+  padding: 8px;
+  display: flex;
+  flex-direction: row-reverse;
+}
+#file .file .row .content {
+  flex-grow: 1;
+  margin-right: 10px;
+}
+#file .file .row .content .title {
+  font-family: Verdana, sans-serif;
+  font-size: 114%;
+}
+#file .file .row .content .player {
+  font-family: Century, serif;
+  font-size: 107%;
+}
+#file .file .row .button {
+  display: inline-flex;
+  align-items: flex-start;
+}
+#file .file .row .button a,
+#file .file .row .button span {
+  margin: 2px;
+}
+#file .file a,
+#file .file label.upload {
+  display: inline-block;
+  padding: 6px 10px;
+  background: #999;
+  border-radius: 5px;
+  white-space: nowrap;
+  cursor: pointer;
+  color: #fff;
+  line-height: 1em;
+  text-decoration: none;
+}
+#file .file a img,
+#file .file label.upload img {
+  height: 1em;
+  margin-right: 4px;
+  vertical-align: bottom;
+}
+#file .file a input,
+#file .file label.upload input {
+  display: none;
+}
+#file .file a.start,
+#file .file label.upload.start {
+  background: #00f;
+}
+#file .file a:hover,
+#file .file label.upload:hover {
+  background: #ccc;
+}
+#file .file a.delete:hover,
+#file .file label.upload.delete:hover {
+  background: #f00;
+}
+#file .file .move {
+  display: inline-block;
+  padding: 3px 0;
+  cursor: move;
+}
+#file .file .move img {
+  height: 1em;
+  vertical-align: bottom;
+}
+#file .file > .button {
+  float: right;
+}
+#file .file form {
+  float: right;
+}
+#file .file form input[name="url"] {
+  width: 270px;
+}
+#file .file .error {
+  transition: opacity 0.5s;
+  margin: 2px 0px;
+  border-radius: 5px;
+  border: solid 1px #f99;
+  color: #f00;
+  background: #fdd;
+  padding: 4px 1em;
+  font-family: Verdana, sans-serif;
+}
+body.stat {
+  color: #000;
+  background: #fff;
+  margin: 0 10px 15px;
+}
+body.stat #navi {
+  margin: 0;
+}
+body.stat #stat {
+  display: block;
+}
+body.stat > .version {
+  display: none;
+}
+#stat {
+  display: none;
+  font-size: 14px;
+  font-family: Verdana, sans-serif;
+}
+#stat h1 {
+  font-size: 24px;
+  margin-top: 0;
+  border-bottom: solid 2px #000;
+}
+#stat h1 img {
+  height: 36px;
+  vertical-align: bottom;
+}
+#stat > .version {
+  margin-top: -2.6em;
+  font-family: Georgia, serif;
+  text-align: right;
+}
+#stat .stat {
+  margin-top: 20px;
+  overflow: auto;
+}
+#stat .stat > div {
+  display: table;
+  max-width: 960px;
+  width: 100%;
+}
+#stat .stat .button {
+  float: right;
+}
+#stat .stat .button .cut-off {
+  font-size: 12px;
+}
+#stat .stat .button .cut-off input[name="n_game"] {
+  width: 2em;
+}
+#stat .stat .button a.file {
+  display: inline-block;
+  margin-left: 1em;
+  padding: 6px 10px;
+  border-radius: 5px;
+  white-space: nowrap;
+  line-height: 1em;
+  text-decoration: none;
+  cursor: pointer;
+  color: #fff;
+  background: #999;
+}
+#stat .stat .button a.file img {
+  height: 1em;
+  margin-right: 4px;
+  vertical-align: bottom;
+}
+#stat .stat .button a.file:hover {
+  background: #ccc;
+}
+#stat .stat h2 {
+  margin: 0;
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+  font-size: 24px;
+}
+#stat .stat h2::after {
+  display: block;
+  content: '';
+  clear: both;
+}
+#stat .stat table {
+  min-width: 780px;
+  width: 100%;
+  margin-top: 1em;
+  border-collapse: collapse;
+  font-size: 16px;
+  white-space: nowrap;
+}
+#stat .stat table thead,
+#stat .stat table tbody {
+  border-bottom: solid 2px #000;
+}
+#stat .stat table thead tr,
+#stat .stat table tbody tr {
+  border-bottom: solid 1px #ccc;
+}
+#stat .stat table th {
+  padding: 2px 10px 2px 4px;
+  font-family: Verdana, sans-serif;
+}
+#stat .stat table th.asc {
+  background: no-repeat right center url("../img/icon-chevron-up.png");
+  background-size: 8px;
+}
+#stat .stat table th.desc {
+  background: no-repeat right center url("../img/icon-chevron-down.png");
+  background-size: 8px;
+}
+#stat .stat table th a {
+  cursor: pointer;
+}
+#stat .stat table td {
+  padding: 2px 0.5em;
+  font-family: Century, serif;
+}
+#stat .stat table td.num {
+  text-align: right;
+}
+#board > .analyzer {
+  display: none;
+  box-sizing: border-box;
+  border: solid 1px #fff;
+  border-radius: 6px;
+  padding: 10px;
+  overflow: auto;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+}
+#board > .analyzer table {
+  border-collapse: collapse;
+}
+#board > .analyzer table .row {
+  white-space: nowrap;
+  line-height: 1;
+}
+#board > .analyzer table .row .pai {
+  display: inline-block;
+  height: 35px;
+  width: 25px;
+}
+#board > .analyzer table .row .pai:focus {
+  transform: translate(0, -5px);
+  outline: none;
+}
+#board > .analyzer table .row .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .analyzer table .row .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .analyzer table .row .pai.mopai {
+  opacity: 0.8;
+}
+#board > .analyzer table .row .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .analyzer table .row img {
+  vertical-align: middle;
+}
+#board > .analyzer table .row .p span {
+  margin-left: 0.5em;
+}
+#board > .analyzer table .row .xiangting {
+  padding: 0 1em;
+  text-align: center;
+}
+#board > .analyzer table .row .eval {
+  padding-right: 1em;
+  text-align: right;
+}
+#board > .analyzer table .row .eval.high {
+  color: #f00;
+}
+#board > .analyzer table .row .eval.middle {
+  color: #ffa500;
+}
+#board > .analyzer table .row .eval.low {
+  color: #ff0;
+}
+#board > .analyzer table .row .eval.none {
+  color: #808080;
+}
+#board > .analyzer table .row .tingpai {
+  width: 100%;
+}
+#board > .analyzer table .row .tingpai span {
+  margin-left: 0.5em;
+}
+#board > .analyzer table .row .shoupai {
+  display: table;
+  width: 380px;
+  height: 40px;
+}
+#board > .analyzer table .row .shoupai .bingpai {
+  line-height: 1;
+  margin-top: 5px;
+  float: left;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai {
+  display: inline-block;
+  height: 35px;
+  width: 25px;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai:focus {
+  transform: translate(0, -5px);
+  outline: none;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .analyzer table .row .shoupai .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+#board > .analyzer table .row .shoupai .bingpai .zimo {
+  margin-left: 2.5px;
+}
+#board > .analyzer table .row .shoupai .fulou {
+  line-height: 1;
+  margin-top: 12px;
+  float: right;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi {
+  margin-left: 2.5px;
+  float: right;
+  display: inline-block;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .pai {
+  display: inline-block;
+  height: 28px;
+  width: 20px;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .pai:focus {
+  transform: translate(0, -4px);
+  outline: none;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+#board > .analyzer table .row .shoupai .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 28px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-28px, 0px);
+}
+#board > .analyzer table .row .action {
+  padding: 0.25em 0.5em;
+}
+@media screen and (min-width: 821px) {
+  body.analyzer #navi,
+  body.analyzer > .version,
+  body.analyzer #board {
+    width: 1400px;
+  }
+  body.analyzer #navi > .analyzer,
+  body.analyzer > .version > .analyzer,
+  body.analyzer #board > .analyzer {
+    display: block;
+    position: relative;
+    transform: translate(0px, 0px);
+    float: right;
+    width: 590px;
+    height: 680px;
+    text-shadow: none;
+  }
+  body.analyzer #navi > .analyzer .selected,
+  body.analyzer > .version > .analyzer .selected,
+  body.analyzer #board > .analyzer .selected {
+    background: #999;
+  }
+  body.analyzer #navi > .analyzer img,
+  body.analyzer > .version > .analyzer img,
+  body.analyzer #board > .analyzer img {
+    opacity: 1;
+  }
+}
+@media screen and (max-width: 820px) and (min-height: 1000px) {
+  body.analyzer #board > .analyzer {
+    display: block;
+    position: relative;
+    transform: translate(0px, 680px);
+    width: 800px;
+    height: 300px;
+    text-shadow: none;
+  }
+  body.analyzer #board > .analyzer .selected {
+    background: #999;
+  }
+  body.analyzer #board > .analyzer img {
+    opacity: 1;
+  }
+}
+body.rule {
+  font-size: 16px;
+  font-family: Verdana, sans-serif;
+  color: #000;
+  background: #fff;
+  margin: 0 5px 32px;
+}
+body.rule > * {
+  max-width: 800px;
+  margin: 0 auto;
+}
+body.rule .version {
+  display: block;
+  font-family: Georgia, serif;
+  text-align: right;
+}
+body.rule .message {
+  color: #090;
+  background: #cfc;
+  border: solid 1px #090;
+  border-radius: 8px;
+  padding: 4px 1em;
+  transition: opacity 0.2s ease-out;
+}
+body.rule form {
+  transition: opacity 0.4s ease-out;
+}
+body.rule form dl {
+  margin: 8px 0;
+  border-bottom: solid 1px #999;
+}
+body.rule form dl::after {
+  display: block;
+  content: "";
+  clear: both;
+}
+body.rule form dt {
+  width: 8.5em;
+  margin: 2px 0;
+  padding: 1px;
+  clear: both;
+  float: left;
+  font-size: 100%;
+  font-weight: bold;
+  text-align: right;
+}
+body.rule form dd {
+  width: calc(100% - 9.5em);
+  margin-left: 0;
+  margin: 2px 0;
+  padding: 1px;
+  float: right;
+}
+body.rule form dd select {
+  padding: 1px 1em 1px 0.5em;
+}
+body.rule form dd label {
+  margin-right: 0.5em;
+}
+body.rule form dd label.wrap {
+  display: inline-block;
+}
+body.rule form dd img {
+  height: 2em;
+  vertical-align: middle;
+  border: solid 0.3px #666;
+  border-radius: 0.3em;
+}
+body.rule form dd input {
+  padding: 1px 0.5em;
+}
+body.rule form dd input[name="配給原点"] {
+  width: 4em;
+  text-align: right;
+}
+body.rule form dd input[name="順位点"] {
+  width: 3.5em;
+  text-align: right;
+}
+body.rule form dd input[name="赤牌"] {
+  width: 1em;
+  text-align: center;
+}
+body.rule form input[type="submit"] {
+  display: block;
+  margin: 0.5em auto;
+}
+@media screen and (max-width: 480px) {
+  body.rule form dt {
+    width: auto;
+    margin-right: 0.5em;
+  }
+  body.rule form dd {
+    width: calc(100% - 7em);
+  }
+}
+@media screen and (max-width: 360px) {
+  body.rule form dd {
+    width: calc(100% - 1em);
+  }
+}
+body.demo {
+  font-size: 12px;
+  font-family: Verdana, sans-serif;
+  color: #fff;
+  background: #036;
+  margin: 0 10px 20px;
+}
+body.demo > * {
+  overflow-x: auto;
+}
+body.demo #navi {
+  margin: 0 auto;
+}
+body.demo .version {
+  display: block;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  text-align: right;
+}
+body.demo form div {
+  margin: 2px 0;
+}
+body.demo form span {
+  margin-right: 1em;
+}
+body.demo form input[name="paistr"] {
+  width: 18em;
+}
+body.demo form input[name="baopai"],
+body.demo form input[name="fubaopai"] {
+  width: 2em;
+  text-align: center;
+}
+body.demo .shan .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+body.demo .shan .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+body.demo .shan .pai.blink {
+  animation: blink 0.5s infinite;
+}
+body.demo .shan .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+body.demo .shan .pai.mopai {
+  opacity: 0.8;
+}
+body.demo .shan .pai.dapai.mopai {
+  opacity: 0.6;
+}
+body.demo .shan .baopai {
+  float: left;
+}
+body.demo .shan .fubaopai {
+  float: right;
+}
+body.demo .he {
+  margin-top: 10px;
+  width: auto;
+}
+body.demo .he div.lizhi {
+  line-height: 0;
+  width: 180px;
+  height: 12px;
+  text-align: left;
+}
+body.demo .he div.lizhi .chouma {
+  width: 108px;
+}
+body.demo .he .dapai {
+  line-height: 0;
+  height: 42px;
+}
+body.demo .he .dapai .pai {
+  display: inline-block;
+  height: 42px;
+  width: 30px;
+}
+body.demo .he .dapai .pai:focus {
+  transform: translate(0, -6px);
+  outline: none;
+}
+body.demo .he .dapai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+body.demo .he .dapai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+body.demo .he .dapai .pai.mopai {
+  opacity: 0.8;
+}
+body.demo .he .dapai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+body.demo .he .dapai .pai.dapai {
+  transform: translate(1.5px, 0.75px);
+}
+body.demo .he .dapai .lizhi {
+  width: 42px;
+  display: inline-block;
+  text-align: left;
+  transform: rotate(270deg);
+}
+body.demo .he .dapai .lizhi .pai.dapai {
+  transform: translate(-0.75px, 1.5px);
+}
+body.demo .he .dapai .break {
+  display: inline-block;
+  width: 3px;
+}
+body.demo .shoupai {
+  clear: both;
+  display: table;
+  width: auto;
+  height: 80px;
+}
+body.demo .shoupai .bingpai {
+  line-height: 1;
+  margin-top: 24px;
+  float: left;
+}
+body.demo .shoupai .bingpai .pai {
+  display: inline-block;
+  height: 56px;
+  width: 40px;
+}
+body.demo .shoupai .bingpai .pai:focus {
+  transform: translate(0, -8px);
+  outline: none;
+}
+body.demo .shoupai .bingpai .pai.blink {
+  animation: blink 0.5s infinite;
+}
+body.demo .shoupai .bingpai .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+body.demo .shoupai .bingpai .pai.mopai {
+  opacity: 0.8;
+}
+body.demo .shoupai .bingpai .pai.dapai.mopai {
+  opacity: 0.6;
+}
+body.demo .shoupai .bingpai .pai[role="button"] {
+  cursor: pointer;
+}
+body.demo .shoupai .bingpai .zimo {
+  margin-left: 4px;
+}
+body.demo .shoupai .fulou {
+  line-height: 1;
+  margin-top: 24px;
+  float: right;
+}
+body.demo .shoupai .fulou .mianzi {
+  margin-left: 4px;
+  float: right;
+  display: inline-block;
+}
+body.demo .shoupai .fulou .mianzi .pai {
+  display: inline-block;
+  height: 56px;
+  width: 40px;
+}
+body.demo .shoupai .fulou .mianzi .pai:focus {
+  transform: translate(0, -8px);
+  outline: none;
+}
+body.demo .shoupai .fulou .mianzi .pai.blink {
+  animation: blink 0.5s infinite;
+}
+body.demo .shoupai .fulou .mianzi .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+body.demo .shoupai .fulou .mianzi .pai.mopai {
+  opacity: 0.8;
+}
+body.demo .shoupai .fulou .mianzi .pai.dapai.mopai {
+  opacity: 0.6;
+}
+body.demo .shoupai .fulou .mianzi .rotate {
+  display: inline-block;
+  white-space: nowrap;
+  text-align: left;
+  width: 56px;
+  transform-origin: 0% 0%;
+  transform: rotate(270deg) translate(-56px, 0px);
+}
+body.demo .status {
+  margin: 1em 0;
+}
+body.demo .paili {
+  white-space: pre;
+}
+body.demo .paili .pai {
+  display: inline-block;
+  height: 35px;
+  width: 25px;
+}
+body.demo .paili .pai:focus {
+  transform: translate(0, -5px);
+  outline: none;
+}
+body.demo .paili .pai.blink {
+  animation: blink 0.5s infinite;
+}
+body.demo .paili .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+body.demo .paili .pai.mopai {
+  opacity: 0.8;
+}
+body.demo .paili .pai.dapai.mopai {
+  opacity: 0.6;
+}
+body.demo .paili img {
+  vertical-align: middle;
+}
+body.demo .hule-dialog {
+  transition: opacity 0.5s;
+  display: table;
+  font-size: 24px;
+  font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
+  line-height: 1;
+}
+body.demo .hule-dialog .hupai {
+  margin-top: 10px;
+  min-width: 280px;
+}
+body.demo .hule-dialog .hupai .fanshu {
+  text-align: right;
+}
+body.demo .hule-dialog .defen {
+  text-align: right;
+}
+body.demo .hule-dialog .defen.no_hule {
+  text-align: left;
+}
+body.demo .analyzer {
+  transition: opacity 0.5s;
+  margin: 20px 0;
+}
+body.demo .analyzer .pai {
+  display: inline-block;
+  height: 35px;
+  width: 25px;
+}
+body.demo .analyzer .pai:focus {
+  transform: translate(0, -5px);
+  outline: none;
+}
+body.demo .analyzer .pai.blink {
+  animation: blink 0.5s infinite;
+}
+body.demo .analyzer .pai.deleted {
+  transition: width 0.3s ease-out 0.1s;
+  opacity: 0;
+  width: 0px;
+}
+body.demo .analyzer .pai.mopai {
+  opacity: 0.8;
+}
+body.demo .analyzer .pai.dapai.mopai {
+  opacity: 0.6;
+}
+body.demo .analyzer img {
+  vertical-align: middle;
+}
+body.demo .analyzer .row .p span {
+  margin-left: 0.5em;
+}
+body.demo .analyzer .row .xiangting {
+  padding: 0 1em;
+  text-align: center;
+}
+body.demo .analyzer .row .eval {
+  padding-right: 1em;
+  text-align: right;
+}
+body.demo .analyzer .row .eval.high {
+  color: #f00;
+}
+body.demo .analyzer .row .eval.middle {
+  color: #ffa500;
+}
+body.demo .analyzer .row .eval.low {
+  color: #ff0;
+}
+body.demo .analyzer .row .eval.none {
+  color: #808080;
+}
+body.demo .analyzer .row .tingpai {
+  white-space: pre;
+}
+body.demo .analyzer .row .tingpai span {
+  margin-left: 0.5em;
+}
+body.demo textarea,
+body.demo .paiga div {
+  box-sizing: border-box;
+  width: 100%;
+}
+body.demo .paiga div {
+  color: #000;
+  background: #fff;
+}
+body.demo .paiga div p {
+  padding: 1em;
+}
