@@ -310,6 +310,161 @@ export class UkajongGame extends Majiang.Game {
 	}
 }
 
+export class UkajongPlayer extends Majiang.UI.Player {
+
+	constructor(root, pai) {
+        super(root, pai);
+    }
+
+	to_ump(pai) {
+		let r = '';
+		let c = '';
+		for (let i = 0; i < pai.length; i++) {
+			let s = pai.substring(i, i + 1);
+			if (s.match(/[_\*\-+=]/)) {
+			}
+			else if (!s.match(/\d/)) {
+				c = s;
+			}
+			else {
+				r += s.replace(/0/, '5') + c;
+			}
+		}
+		return r;
+	}
+	
+	from_ump(pai) {
+		let r = '';
+		let c = '';
+		let n = -1;
+		for (let i = 0; i < pai.length; i++) {
+			let s = pai.substring(i, i + 1);
+			if (s.match(/\d/)) {
+				n = 1 * s;
+			}
+			else if (s.match(/[mpsz]/)) {
+				if (c == s) {
+					r += n;
+				}
+				else {
+					c = s;
+					r += c + n;
+				}
+			}
+		}
+		return r;
+	}
+	
+	replace_zero_if_none(pai) {
+		let r = pai;
+		if (pai == 'm5' && this.shoupai._bingpai.m[5] == 0) {
+			r = 'm0';
+		}
+		else if (pai == 'p5' && this.shoupai._bingpai.p[5] == 0) {
+			r = 'p0';
+		}
+		else if (pai == 's5' && this.shoupai._bingpai.s[5] == 0) {
+			r = 's0';
+		}
+		return r;
+	}
+
+	kaiju(kaiju) {
+        super.kaiju(kaiju);
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'gamestart', ['東', '南', '西', '北'][(4 + this._id - kaiju.qijia) % 4], kaiju.player[0], kaiju.player[1], kaiju.player[2], kaiju.player[3]]);
+		}
+	}
+    qipai(qipai) {
+        super.qipai(qipai);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'kyokustart', ['東', '南', '西', '北'][qipai.zhuangfeng], player[this._model.qijia], qipai.changbang, 1000 * qipai.lizhibang]);
+			SendSSTP([this._hwnd, 'dora', this.to_ump(qipai.baopai)]);
+			SendSSTP([this._hwnd, 'haipai', this._model.player[this._id], this.to_ump(this.shoupai.toString())]);
+		}
+	}
+    zimo(zimo, gangzimo) {
+        super.zimo(zimo, gangzimo);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd && zimo.l == this._model.menfeng(this._id)) {
+			SendSSTP([this._hwnd, 'tsumo', player[(this._model.qijia + zimo.l) % 4], this.shan.paishu, this.to_ump(zimo.p)]);
+		}
+	}
+    dapai(dapai) {
+        super.dapai(dapai);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'sutehai', player[(this._model.qijia + dapai.l) % 4], this.to_ump(dapai.p)]);
+		}
+	}
+    fulou(fulou) {
+        super.fulou(fulou);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'open', player[(this._model.qijia + fulou.l) % 4], this.to_ump(fulou.m)]);
+		}
+	}
+    gang(gang)   {
+        super.gang(gang);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd) {
+			if (gang.m.match(/^[mpsz]\d{4}/))
+				SendSSTP([this._hwnd, 'open', player[(this._model.qijia + gang.l) % 4], this.to_ump(gang.m)]);
+			else
+				SendSSTP([this._hwnd, 'open', player[(this._model.qijia + gang.l) % 4], this.to_ump(gang.m.substr(0,2))]);
+		}
+	}
+    kaigang(kaigang) {
+        super.kaigang(kaigang);
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'dora', this.to_ump(kaigang.baopai)]);
+		}
+	}
+	hule(hule) {
+        super.hule(hule);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'agari', player[(hule.l + this._model.qijia) % 4], hule.fu]);
+			if (hule.fubaopai)
+				SendSSTP([this._hwnd, 'dora', this.to_ump(hule.fubaopai.join(''))]);
+			for (let i = 0; i < 4; i++) {
+				if (!hule.fenpei[i])
+					continue;
+				SendSSTP([this._hwnd, 'point', player[(i + this._model.qijia) % 4], hule.fenpei[i] > 0 ? '+' : '-', Math.abs(hule.fenpei[i])]);
+			}
+			SendSSTP([this._hwnd, 'kyokuend']);
+		}
+	}
+	pingju(pingju) {
+        super.pingju(pingju);
+		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
+		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'ryukyoku']);
+			for (let i = 0; i < 4; i++) {
+				if (!pingju.fenpei[i])
+					continue;
+				SendSSTP([this._hwnd, 'point', player[(i + this._model.qijia) % 4], pingju.fenpei[i] > 0 ? '+' : '-', Math.abs(pingju.fenpei[i])]);
+			}
+			SendSSTP([this._hwnd, 'kyokuend']);
+		}
+	}
+	jieju(jieju)   {
+        super.jieju(jieju);
+		const player = this._model.player;
+		if (this._hwnd) {
+			SendSSTP([this._hwnd, 'gameend', player[0] + String.fromCharCode(1) + jieju.defen[0], player[1] + String.fromCharCode(1) + jieju.defen[1], player[2] + String.fromCharCode(1) + jieju.defen[2], player[3] + String.fromCharCode(1) + jieju.defen[3]]);
+		}
+	}
+}
+
 export class UkajongAI extends Majiang.AI {
 	to_ump(pai) {
 		let r = '';
