@@ -1,1 +1,1 @@
-(()=>{"use strict";Majiang.Game;Majiang.AI})();
+(()=>{"use strict";Majiang.Game;Majiang.UI.Player;Majiang.AI})();

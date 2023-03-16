@@ -10,7 +10,7 @@
 const { hide, show, fadeIn, scale,
         setSelector, clearSelector  } = Majiang.UI.Util;
 
-import { UkajongGame, UkajongAI, RequestPlayerInfo } from './sstp';
+import { UkajongGame, UkajongAI, UkajongPlayer, RequestPlayerInfo } from './sstp';
 
 let loaded;
 
@@ -49,6 +49,7 @@ $(function(){
         for (let i = 1; i < 4; i++) {
             players[i] = new UkajongAI();
         }
+		players[0] = new UkajongPlayer($('#board'), pai, audio);
         game = new UkajongGame(players, end, rule, null, names, hwnds);
 
         game.view = new Majiang.UI.Board($('#board .board'),
