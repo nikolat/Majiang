@@ -5,18 +5,17 @@ const EnableSSTPlog = true;
 
 async function RequestDapai(data) {
 	const hwnd = data[0];
-	const mes1 = ''
-		+ 'NOTIFY SSTP/1.1\n'
-		+ 'Charset: UTF-8\n'
-		+ 'Sender: Majiang\n'
-		+ 'SecurityLevel: local\n'
-		+ 'Event: OnMahjong\n'
-		+ 'Option: nobreak\n'
-		+ 'ReceiverGhostHWnd: ' + hwnd + '\n'
-		+ 'Reference0: UKAJONG/0.2\n'
-		+ 'Reference1: sutehai?\n'
-		+ '\n';
-	const res = await postData(sspServerURL + '/api/sstp/v1', mes1);
+	const mes = ['NOTIFY SSTP/1.1'
+		,'Charset: UTF-8'
+		,'Sender: Majiang'
+		,'SecurityLevel: local'
+		,'Event: OnMahjong'
+		,'Option: nobreak'
+		,`ReceiverGhostHWnd: ${hwnd}`
+		,'Reference0: UKAJONG/0.2'
+		,'Reference1: sutehai?'
+		,''];
+	const res = await postData(sspServerURL + '/api/sstp/v1', mes.join('\n'));
 	const lines = res.split('\r\n');
 	let command;
 	let dapai;
@@ -29,35 +28,28 @@ async function RequestDapai(data) {
 		}
 	}
 	if (EnableSSTPlog) {
-		console.log(mes1);
-		console.log('----------');
-		console.log(res);
-		console.log('----------');
+		console.log(mes.join('\n'), '\n----------\n', res, '\n----------\n');
 	}
 	return [command, dapai];
 };
 
 async function SendSSTP(data) {
 	const hwnd = data[0];
-	let mes = ''
-		+ 'NOTIFY SSTP/1.1\n'
-		+ 'Charset: UTF-8\n'
-		+ 'Sender: Majiang\n'
-		+ 'SecurityLevel: local\n'
-		+ 'Event: OnMahjong\n'
-		+ 'Option: nobreak\n'
-		+ 'ReceiverGhostHWnd: ' + hwnd + '\n'
-		+ 'Reference0: UKAJONG/0.2\n'
+	const mes = ['NOTIFY SSTP/1.1'
+		,'Charset: UTF-8'
+		,'Sender: Majiang'
+		,'SecurityLevel: local'
+		,'Event: OnMahjong'
+		,'Option: nobreak'
+		,`ReceiverGhostHWnd: ${hwnd}`
+		,'Reference0: UKAJONG/0.2'];
 	for (let i = 1; i < data.length; i++) {
-		mes += 'Reference' + i + ': ' + data[i] + '\n';
+		mes.push(`Reference${i}: ${data[i]}`);
 	}
-	mes += '\n';
-	const res = await postData(sspServerURL + '/api/sstp/v1', mes);
+	mes.push('');
+	const res = await postData(sspServerURL + '/api/sstp/v1', mes.join('\n'));
 	if (EnableSSTPlog) {
-		console.log(mes);
-		console.log('----------');
-		console.log(res);
-		console.log('----------');
+		console.log(mes.join('\n'), '\n----------\n', res, '\n----------\n');
 	}
 };
 
@@ -74,25 +66,21 @@ async function postData(url = '', data = '') {
 		const response = await fetch(url, param);
 		return response.text()
 	} catch (error) {
-console.log(error);
+		console.log(error);
 		return '';
 	}
 }
 
 //FMOから起動中のゴースト情報を取得
 export async function RequestPlayerInfo() {
-	const mes1 = ''
-		+ 'EXECUTE SSTP/1.1\n'
-		+ 'Charset: UTF-8\n'
-		+ 'SecurityLevel: external\n'
-		+ 'Command: GetFMO\n'
-		+ '\n';
-	const res = await postData(sspServerURL + '/api/sstp/v1', mes1);
+	const mes1 = ['EXECUTE SSTP/1.1'
+		,'Charset: UTF-8'
+		,'SecurityLevel: external'
+		,'Command: GetFMO'
+		,''];
+	const res = await postData(sspServerURL + '/api/sstp/v1', mes1.join('\n'));
 	if (EnableSSTPlog) {
-		console.log(mes1);
-		console.log('----------');
-		console.log(res);
-		console.log('----------');
+		console.log(mes1.join('\n'), '\n----------\n', res, '\n----------\n');
 	}
 	const lines = res.split('\r\n');
 	const hwnd_tmp = [];
@@ -112,23 +100,19 @@ export async function RequestPlayerInfo() {
 	const hwnd_dict = {};
 	for (let i = 0; i < name_tmp.length; i++) {
 		hwnd_dict[name_tmp[i]] = hwnd_tmp[i];
-		const mes2 = ''
-			+ 'NOTIFY SSTP/1.1\n'
-			+ 'Charset: UTF-8\n'
-			+ 'Sender: Majiang\n'
-			+ 'SecurityLevel: local\n'
-			+ 'Event: OnMahjong\n'
-			+ 'Option: nobreak\n'
-			+ 'ReceiverGhostHWnd: ' + hwnd_tmp[i] + '\n'
-			+ 'Reference0: UKAJONG/0.2\n'
-			+ 'Reference1: hello\n'
-			+ '\n';
-		const res = await postData(sspServerURL + '/api/sstp/v1', mes2);
+		const mes2 = ['NOTIFY SSTP/1.1'
+			,'Charset: UTF-8'
+			,'Sender: Majiang'
+			,'SecurityLevel: local'
+			,'Event: OnMahjong'
+			,'Option: nobreak'
+			,`ReceiverGhostHWnd: ${hwnd_tmp[i]}`
+			,'Reference0: UKAJONG/0.2'
+			,'Reference1: hello'
+			,''];
+		const res = await postData(sspServerURL + '/api/sstp/v1', mes2.join('\n'));
 		if (EnableSSTPlog) {
-			console.log(mes2);
-			console.log('----------');
-			console.log(res);
-			console.log('----------');
+			console.log(mes2.join('\n'), '\n----------\n', res, '\n----------\n');
 		}
 		const lines = res.split('\r\n');
 		for (let i = 0; i < lines.length; i++) {
@@ -144,16 +128,16 @@ export async function RequestPlayerInfo() {
 
 export class UkajongGame extends Majiang.Game {
 
-    constructor(players, callback, rule, title, names, hwnds) {
-        super(players, callback, rule, title);
-        for (let i = 0; i < names.length; i++) {
-            let n = (i + 1) % 4;
-            this._model.player[n] = names[i];
-            this._players[n]._hwnd = hwnds[i];
-            if (i == 3) {
-                break;
-            }
-        }
+	constructor(players, callback, rule, title, names, hwnds) {
+		super(players, callback, rule, title);
+		for (let i = 0; i < names.length; i++) {
+			let n = (i + 1) % 4;
+			this._model.player[n] = names[i];
+			this._players[n]._hwnd = hwnds[i];
+			if (i == 3) {
+				break;
+			}
+		}
 	}
 
 	async reply_zimo() {
@@ -214,7 +198,7 @@ export class UkajongGame extends Majiang.Game {
 			let l = (model.lunban + i) % 4;
 			let reply = this.get_reply(l);
 			if (reply.hule && this.allow_hule(l)) {
-				if (this._rule['最大同時和了数'] == 1  && this._hule.length)
+				if (this._rule['最大同時和了数'] == 1 && this._hule.length)
 																	continue;
 				if (this._view) this._view.say('rong', l);
 				for (let j = 0; j < 4; j++) {
@@ -321,8 +305,8 @@ export class UkajongGame extends Majiang.Game {
 export class UkajongPlayer extends Majiang.UI.Player {
 
 	constructor(root, pai) {
-        super(root, pai);
-    }
+		super(root, pai);
+	}
 
 	to_ump(pai) {
 		let r = '';
@@ -378,13 +362,13 @@ export class UkajongPlayer extends Majiang.UI.Player {
 	}
 
 	async kaiju(kaiju) {
-        super.kaiju(kaiju);
+		super.kaiju(kaiju);
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'gamestart', ['東', '南', '西', '北'][(4 + this._id - kaiju.qijia) % 4], kaiju.player[0], kaiju.player[1], kaiju.player[2], kaiju.player[3]]);
 		}
 	}
-    async qipai(qipai) {
-        super.qipai(qipai);
+	async qipai(qipai) {
+		super.qipai(qipai);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -393,32 +377,32 @@ export class UkajongPlayer extends Majiang.UI.Player {
 			await SendSSTP([this._hwnd, 'haipai', this._model.player[this._id], this.to_ump(this.shoupai.toString())]);
 		}
 	}
-    async zimo(zimo, gangzimo) {
-        super.zimo(zimo, gangzimo);
+	async zimo(zimo, gangzimo) {
+		super.zimo(zimo, gangzimo);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd && zimo.l == this._model.menfeng(this._id)) {
 			await SendSSTP([this._hwnd, 'tsumo', player[(this._model.qijia + zimo.l) % 4], this.shan.paishu, this.to_ump(zimo.p)]);
 		}
 	}
-    async dapai(dapai) {
-        super.dapai(dapai);
+	async dapai(dapai) {
+		super.dapai(dapai);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'sutehai', player[(this._model.qijia + dapai.l) % 4], this.to_ump(dapai.p)]);
 		}
 	}
-    async fulou(fulou) {
-        super.fulou(fulou);
+	async fulou(fulou) {
+		super.fulou(fulou);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'open', player[(this._model.qijia + fulou.l) % 4], this.to_ump(fulou.m)]);
 		}
 	}
-    async gang(gang)   {
-        super.gang(gang);
+	async gang(gang) {
+		super.gang(gang);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -428,14 +412,14 @@ export class UkajongPlayer extends Majiang.UI.Player {
 				await SendSSTP([this._hwnd, 'open', player[(this._model.qijia + gang.l) % 4], this.to_ump(gang.m.substr(0,2))]);
 		}
 	}
-    async kaigang(kaigang) {
-        super.kaigang(kaigang);
+	async kaigang(kaigang) {
+		super.kaigang(kaigang);
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'dora', this.to_ump(kaigang.baopai)]);
 		}
 	}
 	async hule(hule) {
-        super.hule(hule);
+		super.hule(hule);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -451,7 +435,7 @@ export class UkajongPlayer extends Majiang.UI.Player {
 		}
 	}
 	async pingju(pingju) {
-        super.pingju(pingju);
+		super.pingju(pingju);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -464,8 +448,8 @@ export class UkajongPlayer extends Majiang.UI.Player {
 			await SendSSTP([this._hwnd, 'kyokuend']);
 		}
 	}
-	async jieju(jieju)   {
-        super.jieju(jieju);
+	async jieju(jieju) {
+		super.jieju(jieju);
 		const player = this._model.player;
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'gameend', player[0] + String.fromCharCode(1) + jieju.defen[0], player[1] + String.fromCharCode(1) + jieju.defen[1], player[2] + String.fromCharCode(1) + jieju.defen[2], player[3] + String.fromCharCode(1) + jieju.defen[3]]);
@@ -528,20 +512,19 @@ export class UkajongAI extends Majiang.AI {
 	}
 
 	async action_zimo(zimo, gangzimo) {
-        if (zimo.l != this._menfeng) return this._callback();
-        let m;
-        if      (this.select_hule(null, gangzimo))
-                                         this._callback({hule: '-'});
-        else if (this.select_pingju())   this._callback({daopai: '-'});
-        else if (m = this.select_gang()) this._callback({gang: m});
-        else this._callback({dapai: await this.select_dapai()});
-    }
+		if (zimo.l != this._menfeng) return this._callback();
+		let m;
+		if (this.select_hule(null, gangzimo)) this._callback({hule: '-'});
+		else if (this.select_pingju()) this._callback({daopai: '-'});
+		else if (m = this.select_gang()) this._callback({gang: m});
+		else this._callback({dapai: await this.select_dapai()});
+	}
 
 	async action_fulou(fulou) {
-        if (fulou.l != this._menfeng)      return this._callback();
-        if (fulou.m.match(/^[mpsz]\d{4}/)) return this._callback();
-        this._callback({dapai: await this.select_dapai()});
-    }
+		if (fulou.l != this._menfeng) return this._callback();
+		if (fulou.m.match(/^[mpsz]\d{4}/)) return this._callback();
+		this._callback({dapai: await this.select_dapai()});
+	}
 
 	async select_dapai(info) {
 		let dapaiFromGhost;
@@ -569,13 +552,13 @@ export class UkajongAI extends Majiang.AI {
 	}
 
 	async kaiju(kaiju) {
-        super.kaiju(kaiju);
+		super.kaiju(kaiju);
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'gamestart', ['東', '南', '西', '北'][(4 + this._id - kaiju.qijia) % 4], kaiju.player[0], kaiju.player[1], kaiju.player[2], kaiju.player[3]]);
 		}
 	}
-    async qipai(qipai) {
-        super.qipai(qipai);
+	async qipai(qipai) {
+		super.qipai(qipai);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -584,32 +567,32 @@ export class UkajongAI extends Majiang.AI {
 			await SendSSTP([this._hwnd, 'haipai', this._model.player[this._id], this.to_ump(this.shoupai.toString())]);
 		}
 	}
-    async zimo(zimo, gangzimo) {
-        super.zimo(zimo, gangzimo);
+	async zimo(zimo, gangzimo) {
+		super.zimo(zimo, gangzimo);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd && zimo.l == this._model.menfeng(this._id)) {
 			await SendSSTP([this._hwnd, 'tsumo', player[(this._model.qijia + zimo.l) % 4], this.shan.paishu, this.to_ump(zimo.p)]);
 		}
 	}
-    async dapai(dapai) {
-        super.dapai(dapai);
+	async dapai(dapai) {
+		super.dapai(dapai);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'sutehai', player[(this._model.qijia + dapai.l) % 4], this.to_ump(dapai.p)]);
 		}
 	}
-    async fulou(fulou) {
-        super.fulou(fulou);
+	async fulou(fulou) {
+		super.fulou(fulou);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'open', player[(this._model.qijia + fulou.l) % 4], this.to_ump(fulou.m)]);
 		}
 	}
-    async gang(gang)   {
-        super.gang(gang);
+	async gang(gang) {
+		super.gang(gang);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -619,14 +602,14 @@ export class UkajongAI extends Majiang.AI {
 				await SendSSTP([this._hwnd, 'open', player[(this._model.qijia + gang.l) % 4], this.to_ump(gang.m.substr(0,2))]);
 		}
 	}
-    async kaigang(kaigang) {
-        super.kaigang(kaigang);
+	async kaigang(kaigang) {
+		super.kaigang(kaigang);
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'dora', this.to_ump(kaigang.baopai)]);
 		}
 	}
 	async hule(hule) {
-        super.hule(hule);
+		super.hule(hule);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -642,7 +625,7 @@ export class UkajongAI extends Majiang.AI {
 		}
 	}
 	async pingju(pingju) {
-        super.pingju(pingju);
+		super.pingju(pingju);
 		const jushu = (4 + this._model.menfeng(this._id) - this._id + this._model.qijia) % 4;
 		const player = [this._model.player[(4 - jushu) % 4], this._model.player[(5 - jushu) % 4], this._model.player[(6 - jushu) % 4], this._model.player[(7 - jushu) % 4]];
 		if (this._hwnd) {
@@ -655,8 +638,8 @@ export class UkajongAI extends Majiang.AI {
 			await SendSSTP([this._hwnd, 'kyokuend']);
 		}
 	}
-	async jieju(jieju)   {
-        super.jieju(jieju);
+	async jieju(jieju) {
+		super.jieju(jieju);
 		const player = this._model.player;
 		if (this._hwnd) {
 			await SendSSTP([this._hwnd, 'gameend', player[0] + String.fromCharCode(1) + jieju.defen[0], player[1] + String.fromCharCode(1) + jieju.defen[1], player[2] + String.fromCharCode(1) + jieju.defen[2], player[3] + String.fromCharCode(1) + jieju.defen[3]]);

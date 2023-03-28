@@ -45,12 +45,12 @@ $(function(){
                     JSON.parse(localStorage.getItem('Majiang.rule')||'{}'));
 
     async function start() {
-		const [names, hwnds] = await RequestPlayerInfo();
+        const [names, hwnds] = await RequestPlayerInfo();
         let players = [ new Majiang.UI.Player($('#board'), pai, audio) ];
         for (let i = 1; i < 4; i++) {
             players[i] = new UkajongAI();
         }
-		players[0] = new UkajongPlayer($('#board'), pai, audio);
+        players[0] = new UkajongPlayer($('#board'), pai, audio);
         game = new UkajongGame(players, end, rule, null, names, hwnds);
 
         game.view = new Majiang.UI.Board($('#board .board'),
