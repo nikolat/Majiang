@@ -7,8 +7,8 @@ async function RequestDapai(data) {
 	const hwnd = data[0];
 	const mes = ['NOTIFY SSTP/1.1'
 		,'Charset: UTF-8'
+		,'SecurityLevel: external'
 		,'Sender: Majiang'
-		,'SecurityLevel: local'
 		,'Event: OnMahjong'
 		,'Option: nobreak'
 		,`ReceiverGhostHWnd: ${hwnd}`
@@ -37,8 +37,8 @@ async function SendSSTP(data) {
 	const hwnd = data[0];
 	const mes = ['NOTIFY SSTP/1.1'
 		,'Charset: UTF-8'
+		,'SecurityLevel: external'
 		,'Sender: Majiang'
-		,'SecurityLevel: local'
 		,'Event: OnMahjong'
 		,'Option: nobreak'
 		,`ReceiverGhostHWnd: ${hwnd}`
@@ -102,8 +102,8 @@ export async function RequestPlayerInfo() {
 		hwnd_dict[name_tmp[i]] = hwnd_tmp[i];
 		const mes2 = ['NOTIFY SSTP/1.1'
 			,'Charset: UTF-8'
+			,'SecurityLevel: external'
 			,'Sender: Majiang'
-			,'SecurityLevel: local'
 			,'Event: OnMahjong'
 			,'Option: nobreak'
 			,`ReceiverGhostHWnd: ${hwnd_tmp[i]}`
