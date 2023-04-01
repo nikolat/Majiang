@@ -14,7 +14,7 @@ async function RequestDapai(data) {
 		,`ReceiverGhostHWnd: ${hwnd}`
 		,'Reference0: UKAJONG/0.2'
 		,'Reference1: sutehai?'
-		,''];
+		,'',''];
 	const res = await postData(sspServerURL + '/api/sstp/v1', mes.join('\n'));
 	const lines = res.split('\r\n');
 	let command;
@@ -47,6 +47,7 @@ async function SendSSTP(data) {
 		mes.push(`Reference${i}: ${data[i]}`);
 	}
 	mes.push('');
+	mes.push('');
 	const res = await postData(sspServerURL + '/api/sstp/v1', mes.join('\n'));
 	if (EnableSSTPlog) {
 		console.log(mes.join('\n'), '\n----------\n', res, '\n----------\n');
@@ -77,7 +78,7 @@ export async function RequestPlayerInfo() {
 		,'Charset: UTF-8'
 		,'SecurityLevel: external'
 		,'Command: GetFMO'
-		,''];
+		,'',''];
 	const res = await postData(sspServerURL + '/api/sstp/v1', mes1.join('\n'));
 	if (EnableSSTPlog) {
 		console.log(mes1.join('\n'), '\n----------\n', res, '\n----------\n');
@@ -109,7 +110,7 @@ export async function RequestPlayerInfo() {
 			,`ReceiverGhostHWnd: ${hwnd_tmp[i]}`
 			,'Reference0: UKAJONG/0.2'
 			,'Reference1: hello'
-			,''];
+			,'',''];
 		const res = await postData(sspServerURL + '/api/sstp/v1', mes2.join('\n'));
 		if (EnableSSTPlog) {
 			console.log(mes2.join('\n'), '\n----------\n', res, '\n----------\n');
