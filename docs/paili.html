@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=800">
-    <title>電脳麻将: 牌理</title>
+        <title>電脳麻将: 牌理</title>
+        <meta name="description" content="シャンテン数、有効牌とその枚数を表示します">
+        <meta name="twitter:card" content="summary">
+        <meta property="og:title" content="電脳麻将: 牌理">
+        <meta property="og:description" content="シャンテン数、有効牌とその枚数を表示します">
+        <meta property="og:image" content="https://kobalab.net/majiang/img/icon.png">
     <link rel="icon" type="image/png" href="img/icon.png">
     <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
-    <link rel="stylesheet" type="text/css" href="css/majiang-2.0.5.css">
-    <script src="js/majiang-2.0.5.js" defer></script>
-    <script src="js/paili-2.0.5.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/majiang-2.3.6.css">
+    <script src="js/majiang-2.3.6.js" defer></script>
+    <script src="js/paili-2.3.6.js" defer></script>
   </head>
   <body class="demo">
     <div id="loaderr" style="display: none">
@@ -29,10 +34,12 @@
       <li><a href="../">Home</a></li>
       <li><a href="index.html">電脳麻将</a></li>
       <li><a href="autoplay.html">自動対戦</a></li>
+      <li><a href="netplay.html">ネット対戦</a></li>
       <li><a href="rule.html">ルール</a></li>
       <li><a href="paipu.html">牌譜</a></li>
       <li><a href="paili.html">牌理</a></li>
       <li><a href="hule.html">点計算</a></li>
+      <li><a href="drill.html">ドリル</a></li>
       <li><a href="dapai.html">何切る</a></li>
       <li><a href="paiga.html">牌画</a></li>
       <li><a href="https://github.com/kobalab/Majiang" target="_blank">GitHub</a></li>
@@ -89,8 +96,9 @@
       <audio data-name="zimo" src="audio/tsumo.wav" volume="0.2" preload></audio>
       <audio data-name="lizhi" src="audio/richi.wav" volume="0.2" preload></audio>
       <audio data-name="gong" src="audio/nc43994.wav" volume="1" preload></audio>
+      <audio data-name="beep" src="audio/beep.wav" volume="0.2" preload></audio>
     </div>
-    <div class="version">ver. 2.0.5</div>
+    <div class="version">ver. 2.3.6</div>
     <form>
       <input type="button" value="新規">| 手牌
       <input type="text" name="paistr">

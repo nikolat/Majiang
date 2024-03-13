@@ -3,17 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=800">
-        <title>電脳麻将: 何切る解答機</title>
-        <meta name="description" content="電脳麻将のAIが何切る問題に解答します">
+        <title>電脳麻将: 点数計算ドリル</title>
+        <meta name="description" content="点数計算を練習しましょう">
         <meta name="twitter:card" content="summary">
-        <meta property="og:title" content="電脳麻将: 何切る解答機">
-        <meta property="og:description" content="電脳麻将のAIが何切る問題に解答します">
+        <meta property="og:title" content="電脳麻将: 点数計算ドリル">
+        <meta property="og:description" content="点数計算を練習しましょう">
         <meta property="og:image" content="https://kobalab.net/majiang/img/icon.png">
     <link rel="icon" type="image/png" href="img/icon.png">
     <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
     <link rel="stylesheet" type="text/css" href="css/majiang-2.3.6.css">
     <script src="js/majiang-2.3.6.js" defer></script>
-    <script src="js/dapai-2.3.6.js" defer></script>
+    <script src="js/drill-2.3.6.js" defer></script>
   </head>
   <body class="demo">
     <div id="loaderr" style="display: none">
@@ -99,46 +99,36 @@
       <audio data-name="beep" src="audio/beep.wav" volume="0.2" preload></audio>
     </div>
     <div class="version">ver. 2.3.6</div>
-    <form>
-      <div>牌姿:
-        <input name="paistr" type="text">
-        <input type="submit" value="決定">
-        <input type="reset" value="クリア">
-      </div>
-      <div><span> 場風: 
-          <select name="zhuangfeng">
-            <option value="0" selected>東</option>
-            <option value="1">南</option>
-            <option value="2">西</option>
-            <option value="3">北</option>
-          </select> 自風: 
-          <select name="menfeng">
-            <option value="0">東</option>
-            <option value="1" selected>南</option>
-            <option value="2">西</option>
-            <option value="3">北</option>
-          </select></span><span>
-          ドラ表示牌:
-          <input name="baopai" type="text"><input name="baopai" type="text"><input name="baopai" type="text"><input name="baopai" type="text"><input name="baopai" type="text"></span><span>
-          <label>
-            <input name="hongpai" type="checkbox" checked> 赤牌あり
-          </label></span></div>
-    </form>
-    <hr>
-    <div class="shan baopai"><span class="baopai"></span></div>
-    <div class="shoupai">
-      <div class="bingpai"></div>
-      <div class="fulou"></div>
+    <div>ルール:
+      <select name="rule">
+        <option value="">電脳麻将ルール</option>
+      </select>
     </div>
-    <div class="analyzer">
-      <table class="dapai">
-        <tr class="row">
-          <td class="p"></td>
-          <td class="xiangting"></td>
-          <td class="eval"></td>
-          <td class="tingpai"></td>
-        </tr>
-      </table>
+    <hr>
+    <div class="drill hide">
+      <div class="exam">
+        <div class="stat"></div><span class="zhuangfeng"></span>場 <span class="menfeng"></span>家 <img class="lizhi hide" src="img/1000.gif" alt="リーチ">
+        <div class="shan baopai"><span class="baopai"></span></div>
+        <div class="shan fubaopai"><span class="fubaopai"></span></div>
+        <div class="shoupai">
+          <div class="bingpai"></div>
+          <div class="fulou"></div>
+        </div>
+        <hr>
+        <div class="button">
+          <button>回答を表示</button>
+        </div>
+        <div class="answer">
+          <button class="right">○ 正答</button>
+          <button class="miss"> × 誤答</button>
+          <div class="defen"></div>
+          <div class="hupai"></div>
+        </div>
+      </div>
+      <div class="break">
+        <div class="stat"></div>
+        <button>続ける</button>
+      </div>
     </div>
   </body>
 </html>

@@ -9,6 +9,10 @@ input {
   font-size: 100%;
   font-family: Menlo, Consolas, Courier, monospace;
 }
+button {
+  font-size: 100%;
+}
+button,
 input[type="submit"],
 input[type="reset"],
 input[type="button"] {
@@ -19,6 +23,10 @@ input[type="button"] {
   background: #ddd;
   color: #000;
   -webkit-appearance: none;
+}
+input::placeholder {
+  color: #999;
+  opacity: 1;
 }
 select {
   border: solid 1px;
@@ -118,6 +126,7 @@ body.title > .version {
   background: #fff;
   color: #000;
   text-align: center;
+  font-family: Century, serif;
 }
 #title h1 {
   margin: 0px;
@@ -152,6 +161,34 @@ body.title > .version {
 #title .start:focus {
   background: #ccc;
   outline: none;
+}
+#title .login {
+  margin: 8px auto;
+}
+#title .login form {
+  margin: 0.5em;
+}
+#title .login input[type="submit"] {
+  cursor: pointer;
+}
+#title .login form.local input[name="name"] {
+  width: 8em;
+}
+#title .login form.local input[type="submit"] {
+  border: none;
+  color: #fff;
+  background: #00f;
+}
+#title .login img {
+  width: 1.2em;
+  vertical-align: middle;
+}
+#title .login form:not(.local) input[type="submit"] {
+  width: 120px;
+  border: none;
+  background: none;
+  text-align: left;
+  padding: 0;
 }
 body.board {
   color: #fff;
@@ -228,7 +265,15 @@ body.board > .version {
 #board > .board .score .defen div.shangjia {
   text-align: left;
 }
+#board > .board .timer {
+  color: #fff;
+  font-size: 16px;
+  font-family: Georgia, serif;
+  text-align: right;
+  text-shadow: 2px 2px 4px #000;
+}
 #board > .board .player-button {
+  z-index: 1;
   text-align: right;
   white-space: nowrap;
 }
@@ -246,6 +291,7 @@ body.board > .version {
   outline: none;
 }
 #board > .board .select-mianzi {
+  z-index: 1;
   line-height: 1;
   text-align: right;
   white-space: nowrap;
@@ -267,9 +313,14 @@ body.board > .version {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+#board > .board > .player.disconnect {
+  opacity: 0.1;
+}
+#board > .board > .player.selectable {
   cursor: pointer;
 }
-#board > .board > .player:hover {
+#board > .board > .player.selectable:hover {
   opacity: 1;
 }
 #board > .board .say {
@@ -368,6 +419,7 @@ body.board > .version {
   color: #f00;
 }
 #board > .board > .summary {
+  z-index: 1;
   display: flex;
   overflow: auto;
   align-items: center;
@@ -448,7 +500,11 @@ body.board > .version {
   background: rgba(255,255,255,0.4);
   cursor: pointer;
 }
-#board > .board .kaiju {
+#board > .board .kaiju:focus {
+  outline: none;
+}
+#board > .board .kaiju > div {
+  z-index: 1;
   margin-top: 120px;
   position: relative;
   width: 580px;
@@ -457,21 +513,21 @@ body.board > .version {
   border: solid 1px #111;
   border-radius: 6px;
 }
-#board > .board .kaiju .title {
+#board > .board .kaiju > div .title {
   margin: 40px 20px;
   text-align: center;
   font-family: "HGP行書体", /*"Weibei SC", "YuKyokasho",*/ STKaiti, serif;
   font-size: 32px;
   line-height: 1;
 }
-#board > .board .kaiju .player {
+#board > .board .kaiju > div .player {
   margin: 40px 20px;
   height: 132px;
   text-align: center;
   font-family: Century, serif;
   font-size: 24px;
 }
-#board > .board .kaiju .player > div {
+#board > .board .kaiju > div .player > div {
   position: absolute;
   width: 240px;
   height: 38px;
@@ -481,29 +537,41 @@ body.board > .version {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+#board > .board .kaiju > div .player > div.selectable {
   cursor: pointer;
 }
-#board > .board .kaiju .player > div.main {
+#board > .board .kaiju > div .player > div.selectable:hover {
+  background: #999;
+}
+#board > .board .kaiju > div .player > div.main {
   transform: translate(140px, 96px);
 }
-#board > .board .kaiju .player > div.xiajia {
+#board > .board .kaiju > div .player > div.xiajia {
   transform: translate(280px, 48px);
 }
-#board > .board .kaiju .player > div.duimian {
+#board > .board .kaiju > div .player > div.duimian {
   transform: translate(140px, 0px);
 }
-#board > .board .kaiju .player > div.shangjia {
+#board > .board .kaiju > div .player > div.shangjia {
   transform: translate(0px, 48px);
-}
-#board > .board .kaiju .player > div:hover {
-  background: #999;
 }
 #board .controller {
   position: absolute;
 }
 #board .controller img {
+  display: none;
   opacity: 0.2;
   cursor: pointer;
+}
+#board .controller img.sound {
+  display: inline;
+}
+#board .controller.paipu img {
+  display: inline;
+}
+#board .controller .speed img {
+  display: inline;
 }
 #board .controller .speed span {
   display: inline-block;
@@ -633,6 +701,9 @@ body.board > .version {
 }
 #board > .board .score .defen div.shangjia {
   transform: translate(10px, 24px);
+}
+#board > .board .timer {
+  transform: translate(120px, 600px);
 }
 #board > .board .player-button {
   transform: translate(120px, 580px);
@@ -1302,6 +1373,10 @@ body.board > .version {
   font-size: 24px;
 }
 #board > .board .kaiju {
+  width: 800px;
+  height: 680px;
+}
+#board > .board .kaiju > div {
   margin-top: 120px;
 }
 #board .controller {
@@ -1440,6 +1515,9 @@ body.analyzer #board > .analyzer img {
   }
   #board > .board .score .defen div.shangjia {
     transform: translate(5px, 0px);
+  }
+  #board > .board .timer {
+    transform: translate(78px, 380px);
   }
   #board > .board .player-button {
     z-index: 1;
@@ -2120,6 +2198,10 @@ body.analyzer #board > .analyzer img {
     font-size: 20px;
   }
   #board > .board .kaiju {
+    width: 800px;
+    height: 450px;
+  }
+  #board > .board .kaiju > div {
     margin-top: 60px;
   }
   #board .controller {
@@ -2136,10 +2218,16 @@ body.analyzer #board > .analyzer img {
   }
   #board .controller img {
     opacity: 0.2;
-    display: block;
+    display: none;
     width: 24px;
     height: 24px;
     margin: 8px auto;
+  }
+  #board .controller img.sound {
+    display: block;
+  }
+  #board .controller.paipu img {
+    display: block;
   }
   #board .controller div {
     display: block;
@@ -2197,21 +2285,25 @@ body.file #file {
 body.file > .version {
   display: none;
 }
-#file {
+#file,
+#room {
   display: none;
   font-size: 14px;
   font-family: Verdana, sans-serif;
 }
-#file h1 {
+#file h1,
+#room h1 {
   font-size: 24px;
   margin-top: 0;
   border-bottom: solid 2px #000;
 }
-#file h1 img {
+#file h1 img,
+#room h1 img {
   height: 36px;
   vertical-align: bottom;
 }
-#file > .version {
+#file > .version,
+#room > .version {
   margin-top: -2.4em;
   font-size: 16px;
   font-family: Georgia, serif;
@@ -2295,11 +2387,36 @@ body.file > .version {
 #file .file > .button {
   float: right;
 }
-#file .file form {
+#file .file form.tenhou {
   float: right;
 }
-#file .file form input[name="url"] {
+#file .file form.tenhou input[name="url"] {
   width: 270px;
+}
+#file .file .netplay {
+  display: inline-block;
+}
+#file .file .netplay img {
+  width: 2em;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+#file .file .netplay .name {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 120%;
+  width: 8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+#file .file .netplay form {
+  margin-right: 0.5em;
+  display: inline-block;
+}
+#file .file .netplay form input[name="room_no"] {
+  width: 3em;
 }
 #file .file .error {
   transition: opacity 0.5s;
@@ -2628,6 +2745,59 @@ body.stat > .version {
   body.analyzer #board > .analyzer img {
     opacity: 1;
   }
+}
+body.room {
+  color: #000;
+  background: #fff;
+  margin: 0 10px 15px;
+}
+body.room #navi {
+  margin: 0;
+}
+body.room #room {
+  display: block;
+}
+body.room > .version {
+  display: none;
+}
+#room form {
+  border: solid 1px #666;
+  border-radius: 8px;
+  padding: 16px;
+  margin: 20px;
+}
+#room form input[name="room_no"] {
+  -webkit-text-fill-color: #000;
+  opacity: 0.7;
+  width: 3em;
+}
+#room form select {
+  padding: 1px 1em 1px 0.5em;
+}
+#room form input[name="timer"] {
+  width: 5em;
+}
+#room form .room .user {
+  margin: 10px 0;
+}
+#room form .room .user.offline img,
+#room form .room .user.offline .name {
+  opacity: 0.3;
+}
+#room form .room .user img {
+  width: 2em;
+  vertical-align: middle;
+  border-radius: 50%;
+  margin-right: 0.5em;
+}
+#room form .room .user .name {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 120%;
+  width: 8em;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 body.rule {
   font-size: 16px;
@@ -2980,6 +3150,52 @@ body.demo .hule-dialog .defen {
 }
 body.demo .hule-dialog .defen.no_hule {
   text-align: left;
+}
+body.demo .drill {
+  display: table;
+  font-size: 20px;
+  font-family: Century, serif;
+}
+body.demo .drill button {
+  font-size: 16px;
+}
+body.demo .drill .stat {
+  font-family: Georgia, serif;
+}
+body.demo .drill .exam .stat {
+  float: right;
+  font-size: 16px;
+}
+body.demo .drill img.lizhi {
+  width: 64px;
+  height: 8px;
+}
+body.demo .drill .shoupai .bingpai .zimo span {
+  font-size: 18px;
+  font-family: Century, serif;
+  margin: 0 0.5em;
+}
+body.demo .drill .shoupai .fulou .mianzi:last-child {
+  margin-left: 20px;
+}
+body.demo .drill .answer button {
+  float: right;
+  margin-left: 1em;
+}
+body.demo .drill .defen {
+  font-family: Georgia, serif;
+  font-size: 24px;
+}
+body.demo .drill .hupai {
+  margin: 0 1em;
+}
+body.demo .drill .break {
+  width: 800px;
+  font-size: 24px;
+  text-align: center;
+}
+body.demo .drill .break .stat {
+  margin: 1em 0;
 }
 body.demo .analyzer {
   transition: opacity 0.5s;

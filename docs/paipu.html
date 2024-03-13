@@ -3,12 +3,17 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=800">
-    <title>電脳麻将: 牌譜ビューア</title>
+        <title>電脳麻将: 牌譜ビューア</title>
+        <meta name="description" content="電脳麻将形式あるいは天鳳の牌譜を再生します">
+        <meta name="twitter:card" content="summary">
+        <meta property="og:title" content="電脳麻将: 牌譜ビューア">
+        <meta property="og:description" content="電脳麻将形式あるいは天鳳の牌譜を再生します">
+        <meta property="og:image" content="https://kobalab.net/majiang/img/icon.png">
     <link rel="icon" type="image/png" href="img/icon.png">
     <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
-    <link rel="stylesheet" type="text/css" href="css/majiang-2.0.5.css">
-    <script src="js/majiang-2.0.5.js" defer></script>
-    <script src="js/paipu-2.0.5.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="css/majiang-2.3.6.css">
+    <script src="js/majiang-2.3.6.js" defer></script>
+    <script src="js/paipu-2.3.6.js" defer></script>
   </head>
   <body class="file">
     <div id="loaderr" style="display: none">
@@ -29,10 +34,12 @@
       <li><a href="../">Home</a></li>
       <li><a href="index.html">電脳麻将</a></li>
       <li><a href="autoplay.html">自動対戦</a></li>
+      <li><a href="netplay.html">ネット対戦</a></li>
       <li><a href="rule.html">ルール</a></li>
       <li><a href="paipu.html">牌譜</a></li>
       <li><a href="paili.html">牌理</a></li>
       <li><a href="hule.html">点計算</a></li>
+      <li><a href="drill.html">ドリル</a></li>
       <li><a href="dapai.html">何切る</a></li>
       <li><a href="paiga.html">牌画</a></li>
       <li><a href="https://github.com/kobalab/Majiang" target="_blank">GitHub</a></li>
@@ -89,11 +96,12 @@
       <audio data-name="zimo" src="audio/tsumo.wav" volume="0.2" preload></audio>
       <audio data-name="lizhi" src="audio/richi.wav" volume="0.2" preload></audio>
       <audio data-name="gong" src="audio/nc43994.wav" volume="1" preload></audio>
+      <audio data-name="beep" src="audio/beep.wav" volume="0.2" preload></audio>
     </div>
     <div id="file">
       <h1><img src="img/logo.png" alt="電脳麻将"> 牌譜ビューア
       </h1>
-      <div class="version">ver. 2.0.5</div>
+      <div class="version">ver. 2.3.6</div>
       <div class="file hide">
         <div class="list">
           <div class="row">
@@ -118,14 +126,14 @@
         <div class="button"><a class="stat"><img src="img/icon-dotlist.png">牌譜集計</a>
           <a class="download"><img src="img/icon-download-alt.png">牌譜保存</a>
         </div>
-        <form class="hide">天鳳 牌譜ID: 
+        <form class="tenhou hide">天鳳 牌譜ID: 
           <input name="url">
         </form>
       </div>
     </div>
     <div id="stat">
       <h1><img src="img/logo.png" alt="電脳麻将"> 牌譜集計</h1>
-      <div class="version">ver. 2.0.5</div>
+      <div class="version">ver. 2.3.6</div>
       <div class="stat">
         <div>
           <div class="button">
@@ -191,6 +199,7 @@
             <div class="shangjia"></div>
           </div>
         </div>
+        <div class="timer hide"></div>
         <div class="player-button hide"><span class="button cansel" aria-label="キャンセル">×</span><span class="button daopai">ノー聴</span><span class="button chi">チー</span><span class="button peng">ポン</span><span class="button gang">カン</span><span class="button lizhi">リーチ</span><span class="button rong"> ロン</span><span class="button zimo">ツモ</span><span class="button pingju">流局</span></div>
         <div class="select-mianzi hide"></div>
                 <div class="player main"></div>
@@ -309,12 +318,14 @@
           </div>
         </div>
         <div class="kaiju">
-          <div class="title"></div>
-          <div class="player">
-            <div class="main"></div>
-            <div class="xiajia"></div>
-            <div class="duimian"></div>
-            <div class="shangjia"></div>
+          <div>
+            <div class="title"></div>
+            <div class="player">
+              <div class="main"></div>
+              <div class="xiajia"></div>
+              <div class="duimian"></div>
+              <div class="shangjia"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -347,6 +358,6 @@
       </div>
       <div class="download hide"><a><img src="img/icon-download-alt.png">牌譜保存</a></div>
     </div>
-    <div class="version">ver. 2.0.5</div>
+    <div class="version">ver. 2.3.6</div>
   </body>
 </html>

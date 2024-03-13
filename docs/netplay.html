@@ -3,17 +3,18 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=800">
-        <title>電脳麻将: 自動対戦</title>
-        <meta name="description" content="AIプレーヤーの無限麻雀地獄">
+        <title>電脳麻将: ネット対戦</title>
+        <meta name="description" content="WebSocketで動作する麻雀サーバー">
         <meta name="twitter:card" content="summary">
-        <meta property="og:title" content="電脳麻将: 自動対戦">
-        <meta property="og:description" content="AIプレーヤーの無限麻雀地獄">
-        <meta property="og:image" content="https://kobalab.net/majiang/img/game.png">
+        <meta property="og:title" content="電脳麻将: ネット対戦">
+        <meta property="og:description" content="WebSocketで動作する麻雀サーバー">
+        <meta property="og:image" content="https://kobalab.net/majiang/img/netplay.png">
     <link rel="icon" type="image/png" href="img/icon.png">
     <link rel="apple-touch-icon" type="image/png" href="img/icon.png">
     <link rel="stylesheet" type="text/css" href="css/majiang-2.3.6.css">
+    <script src="server/socket.io/socket.io.js" defer></script>
     <script src="js/majiang-2.3.6.js" defer></script>
-    <script src="js/autoplay-2.3.6.js" defer></script>
+    <script src="js/netplay-2.3.6.js" defer></script>
   </head>
   <body class="title">
     <div id="loaderr" style="display: none">
@@ -47,7 +48,7 @@
     </ul>
     <div id="title">
       <h1><img src="img/logo.png" alt="電脳麻将"></h1>
-      <div>自動対戦</div>
+      <div>ネット対戦</div>
       <div class="version">ver. 2.3.6</div>
       <div class="loading">Loading data...</div>
       <div class="start hide" tabindex="0" role="button">START</div>
@@ -117,6 +118,108 @@
       <audio data-name="lizhi" src="audio/richi.wav" volume="0.2" preload></audio>
       <audio data-name="gong" src="audio/nc43994.wav" volume="1" preload></audio>
       <audio data-name="beep" src="audio/beep.wav" volume="0.2" preload></audio>
+    </div>
+    <div id="file">
+      <h1><img src="img/logo.png" alt="電脳麻将"> ネット対戦
+      </h1>
+      <div class="version">ver. 2.3.6</div>
+      <div class="file hide">
+        <div class="error hide"></div>
+        <div class="netplay"><img src="img/icon.png" title="guest"><span class="name"></span>
+          <form class="room">
+            <input name="room_no" placeholder="ルーム">
+            <input type="submit" value="入室">
+          </form>
+          <form class="room">
+            <input type="submit" value="ルーム作成">
+          </form>
+          <form class="logout" method="POST" action="server/logout">
+            <input type="submit" value="ログアウト">
+          </form>
+        </div>
+        <div class="button"><a class="stat"><img src="img/icon-dotlist.png">牌譜集計</a>
+          <a class="download"><img src="img/icon-download-alt.png">牌譜保存</a>
+        </div>
+        <div class="list">
+          <div class="row">
+            <div class="button"><a class="replay"><img src="img/icon-play.png">再生</a>
+              <a class="download"><img src="img/icon-download-alt.png">保存</a>
+              <a class="delete"><img src="img/icon-trash.png">削除</a>
+              
+            </div>
+            <div class="content">
+              <div class="title"></div>
+              <div class="player"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="stat">
+      <h1><img src="img/logo.png" alt="電脳麻将"> 牌譜集計</h1>
+      <div class="version">ver. 2.3.6</div>
+      <div class="stat">
+        <div>
+          <div class="button">
+            <label class="cut-off">
+              <input name="cut-off" type="checkbox">対戦数 
+              <input name="n_game"> 以下は表示しない
+            </label><a class="file"><img src="img/icon-arrow-left.png">牌譜一覧        </a>
+          </div>
+          <h2 class="title"></h2>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th><a>対戦</a></th>
+                <th><a>ポイント</a></th>
+                <th><a>順位</a></th>
+                <th><a>トップ</a></th>
+                <th><a>連対</a></th>
+                <th><a>ラス</a></th>
+                <th><a>和了</a></th>
+                <th><a>放銃</a></th>
+                <th><a>立直</a></th>
+                <th><a>副露</a></th>
+                <th><a>打点</a></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="name"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+                <td class="num"></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div id="room">
+      <h1><img src="img/logo.png" alt="電脳麻将"> ネット対戦</h1>
+      <div class="version">ver. 2.3.6</div>
+      <form>ルーム
+        <input name="room_no" value="" disabled>
+        <ul class="room">
+          <li class="user"><img src="img/icon.png"><span class="name"></span>
+            <input class="hide" type="button" name="quit" value="退室">
+          </li>
+        </ul>
+        <select name="rule">
+          <option value="">電脳麻将ルール</option>
+        </select>
+        <input name="timer" placeholder="持ち時間">
+        <input type="submit" value="対局開始">
+      </form>
     </div>
     <div id="space"></div>
     <div id="board">
