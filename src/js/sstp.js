@@ -305,8 +305,8 @@ export class UkajongGame extends Majiang.Game {
 
 export class UkajongPlayer extends Majiang.UI.Player {
 
-	constructor(root, pai) {
-		super(root, pai);
+	constructor(root, pai, audio) {
+		super(root, pai, audio);
 	}
 
 	to_ump(pai) {
